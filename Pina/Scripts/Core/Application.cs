@@ -168,7 +168,10 @@ public static class Application
         }
     }
 
-    public static bool IsCursorOnScreen
+    /// <summary>
+    /// Is cursor on the screen
+    /// </summary>
+    public static bool CursorOnScreen
     {
         get
         {
