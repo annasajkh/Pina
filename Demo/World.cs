@@ -1,4 +1,5 @@
-﻿using Pina.Scripts.Resources;
+﻿using Pina.Scripts.Core;
+using Pina.Scripts.Resources;
 using Pina.Scripts.Utilities.Abstracts;
 using Raylib_cs;
 
@@ -28,12 +29,12 @@ public class World : Scene
 
     public override void Draw()
     {
-        Raylib.BeginDrawing();
+        Graphics.BeginDrawing();
 
-        Raylib.ClearBackground(Color.Black);
+        Graphics.ClearBackground(Color.Black);
 
-        Raylib.DrawTexture(ResourceManager.Get<TextureResource>("cat").Texture, 100, 100, Color.White);
+        Graphics.DrawTexture(ResourceManager.Get<TextureResource>("cat").Texture, 100, 100, Color.White);
 
-        Raylib.EndDrawing();
+        Graphics.EndDrawing();
     }
 }

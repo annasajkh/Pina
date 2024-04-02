@@ -193,7 +193,7 @@ public static class Application
     /// <summary>
     /// Get current render height (it considers HiDPI)
     /// </summary>
-    public static int RenderHeight
+    public static int RenderHeightcl
     {
         get
         {

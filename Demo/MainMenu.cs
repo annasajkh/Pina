@@ -31,12 +31,12 @@ internal class MainMenu : Scene
 
     public override void Draw()
     {
-        Raylib.BeginDrawing();
+        Graphics.BeginDrawing();
 
-        Raylib.ClearBackground(Color.Black);
+        Graphics.ClearBackground(Color.Black);
 
-        Raylib.DrawText("Press Enter to Play", Window.Size.X / 2 - 100, Window.Size.Y / 2, 20, Color.White);
-        
-        Raylib.EndDrawing();
+        Graphics.DrawText("Press Enter to Play", Window.Size.X / 2 - 100, Window.Size.Y / 2, 20, Color.White);
+
+        Graphics.EndDrawing();
     }
 }
