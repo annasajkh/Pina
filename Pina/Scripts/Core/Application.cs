@@ -65,6 +65,87 @@ public static class Application
         }
     }
 
+    private static bool eventWaiting;
+
+    /// <summary>
+    /// Enable/Disable events on EndDrawing(), no automatic event polling/automatic event polling
+    /// </summary>
+    public static bool EventWaiting
+    {
+        get
+        {
+            return eventWaiting;
+        }
+
+        set
+        {
+            eventWaiting = value;
+
+            if (eventWaiting)
+            {
+                Raylib.EnableEventWaiting();
+            }
+            else
+            {
+                Raylib.DisableEventWaiting();
+            }
+        }
+    }
+
+    private static bool showCursor = true;
+
+    /// <summary>
+    /// Shows/Hides cursor
+    /// </summary>
+    public static bool ShowCursor
+    {
+        get
+        {
+            return showCursor;
+        }
+
+        set
+        {
+            showCursor = value;
+
+            if (showCursor)
+            {
+                Raylib.ShowCursor();
+            }
+            else
+            {
+                Raylib.HideCursor();
+            }
+        }
+    }
+
+    private static bool lockCursor;
+
+    /// <summary>
+    /// Lock/Unlock cursor
+    /// </summary>
+    public static bool LockCursor
+    {
+        get
+        {
+            return lockCursor;
+        }
+
+        set
+        {
+            lockCursor = value;
+
+            if (lockCursor)
+            {
+                Raylib.DisableCursor();
+            }
+            else
+            {
+                Raylib.EnableCursor();
+            }
+        }
+    }
+
     /// <summary>
     /// Get current screen width
     /// </summary>
@@ -84,6 +165,14 @@ public static class Application
         get
         {
             return Raylib.GetScreenHeight();
+        }
+    }
+
+    public static bool IsCursorOnScreen
+    {
+        get
+        {
+            return Raylib.IsCursorOnScreen();
         }
     }
 
