@@ -1,4 +1,5 @@
 ﻿using Pina.Scripts.Core;
+using Pina.Scripts.Utilities;
 using Pina.Scripts.Utilities.Abstracts;
 using Raylib_cs;
 
@@ -18,7 +19,7 @@ internal class MainMenu : Scene
 
     public override void GetInput()
     {
-        if (Raylib.IsKeyPressed(KeyboardKey.Enter))
+        if (Input.IsKeyPressed(KeyboardKey.Enter))
         {
             Program.SceneManager.ChangeScene("World");
         }
