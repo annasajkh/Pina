@@ -1,6 +1,6 @@
 ﻿using Pina.Scripts.Interfaces;
 
-namespace Pina.Scripts.Utilities.Components;
+namespace Pina.Scripts.Core.Components;
 
 
 public sealed class SpriteAnimator : IUpdatable

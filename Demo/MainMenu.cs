@@ -1,6 +1,5 @@
 ﻿using Pina.Scripts.Core;
-using Pina.Scripts.Utilities;
-using Pina.Scripts.Utilities.Abstracts;
+using Pina.Scripts.Core.Abstracts;
 using Raylib_cs;
 
 namespace Demo;

@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Emergence.Scripts.Utils;
+namespace Pina.Scripts.Core.Types;
 
 public struct Vector2i : IEquatable<Vector2i>, IFormattable
 {
@@ -18,61 +18,61 @@ public struct Vector2i : IEquatable<Vector2i>, IFormattable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2i operator+(Vector2i left, Vector2i right)
+    public static Vector2i operator +(Vector2i left, Vector2i right)
     {
         return new Vector2i(left.X + right.X, left.Y + right.Y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2i operator-(Vector2i left, Vector2i right)
+    public static Vector2i operator -(Vector2i left, Vector2i right)
     {
         return new Vector2i(left.X - right.X, left.Y - right.Y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2i operator*(Vector2i left, Vector2i right)
+    public static Vector2i operator *(Vector2i left, Vector2i right)
     {
         return new Vector2i(left.X * right.X, left.Y * right.Y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2i operator/(Vector2i left, Vector2i right)
+    public static Vector2i operator /(Vector2i left, Vector2i right)
     {
         return new Vector2i(left.X / right.X, left.Y / right.Y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2i operator%(Vector2i left, Vector2i right)
+    public static Vector2i operator %(Vector2i left, Vector2i right)
     {
         return new Vector2i(left.X % right.X, left.Y % right.Y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2 operator+(Vector2i left, float right) 
-    { 
-        return new Vector2(left.X + right, left.Y + right); 
+    public static Vector2 operator +(Vector2i left, float right)
+    {
+        return new Vector2(left.X + right, left.Y + right);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2 operator-(Vector2i left, float right)
+    public static Vector2 operator -(Vector2i left, float right)
     {
         return new Vector2(left.X - right, left.Y - right);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2 operator*(Vector2i left, float right)
+    public static Vector2 operator *(Vector2i left, float right)
     {
         return new Vector2(left.X * right, left.Y * right);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2 operator/(Vector2i left, float right)
+    public static Vector2 operator /(Vector2i left, float right)
     {
         return new Vector2(left.X / right, left.Y / right);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2 operator%(Vector2i left, float right)
+    public static Vector2 operator %(Vector2i left, float right)
     {
         return new Vector2(left.X % right, left.Y % right);
     }
@@ -80,7 +80,7 @@ public struct Vector2i : IEquatable<Vector2i>, IFormattable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator ==(Vector2i left, Vector2i right)
     {
-        return (left.X == right.X) && (left.Y == right.Y);
+        return left.X == right.X && left.Y == right.Y;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -92,7 +92,7 @@ public struct Vector2i : IEquatable<Vector2i>, IFormattable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override readonly bool Equals([NotNullWhen(true)] object? obj)
     {
-        return (obj is Vector2i other) && Equals(other);
+        return obj is Vector2i other && Equals(other);
     }
 
     public readonly bool Equals(Vector2i other)

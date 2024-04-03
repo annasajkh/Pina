@@ -1,6 +1,7 @@
 ﻿using Pina.Scripts.Managers;
+using Pina.Scripts.Utilities.Abstracts;
 
-namespace Pina.Scripts.Utilities.Abstracts;
+namespace Pina.Scripts.Core.Abstracts;
 
 public abstract class Scene
 {

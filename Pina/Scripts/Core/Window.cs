@@ -1,4 +1,4 @@
-﻿using Emergence.Scripts.Utils;
+﻿using Pina.Scripts.Core.Types;
 using Raylib_cs;
 using System.Numerics;
 
@@ -104,7 +104,7 @@ public static class Window
         }
     }
 
-    private static Vector2i position = new Vector2i(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
+    private static Vector2i position = new Vector2i(Screen.Width / 2, Screen.Height / 2);
 
     /// <summary>
     /// Position of the window

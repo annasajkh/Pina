@@ -1,7 +1,7 @@
 ﻿using Raylib_cs;
 using System.Numerics;
 
-namespace Pina.Scripts.Utilities;
+namespace Pina.Scripts.Core;
 
 
 public static class Input

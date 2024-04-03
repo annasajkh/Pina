@@ -1,4 +1,4 @@
-﻿using Emergence.Scripts.Utils;
+﻿using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
 using Raylib_cs;
 
@@ -147,39 +147,6 @@ public static class Application
     }
 
     /// <summary>
-    /// Get current screen width
-    /// </summary>
-    public static int ScreenWidth
-    {
-        get
-        {
-            return Raylib.GetScreenWidth();
-        }
-    }
-
-    /// <summary>
-    /// Get current screen height
-    /// </summary>
-    public static int ScreenHeight
-    {
-        get
-        {
-            return Raylib.GetScreenHeight();
-        }
-    }
-
-    /// <summary>
-    /// Is cursor on the screen
-    /// </summary>
-    public static bool CursorOnScreen
-    {
-        get
-        {
-            return Raylib.IsCursorOnScreen();
-        }
-    }
-
-    /// <summary>
     /// Get current render width (it considers HiDPI)
     /// </summary>
     public static int RenderWidth
@@ -217,7 +184,6 @@ public static class Application
     {
         return Raylib.GetClipboardText_();
     }
-
 
     // TODO: implement the rest of it
 

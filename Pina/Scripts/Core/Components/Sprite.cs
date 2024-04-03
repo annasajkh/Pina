@@ -3,7 +3,7 @@ using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
 
-namespace Pina.Scripts.Utilities.Components;
+namespace Pina.Scripts.Core.Components;
 
 public sealed class Sprite : IDrawable
 {
