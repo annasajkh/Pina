@@ -9,7 +9,7 @@ public class World : Scene
 {
     public override void Load()
     {
-        ResourceManager.Load<TextureResource>("cat", "Assets/Sprites/cat.png");
+        ResourceManager.Init<TextureResource>("cat").Load("Assets/Sprites/cat.png");
     }
 
     public override void Init()

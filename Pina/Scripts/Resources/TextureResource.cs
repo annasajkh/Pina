@@ -36,25 +36,11 @@ public sealed class TextureResource : Resource
         }
     }
 
-    public TextureResource()
-    {
-
-    }
-
-    public TextureResource(TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
-    {
-        TextureFilter = textureFilter;
-        TextureWrap = textureWrap;
-    }
-
-    public TextureResource(string path)
-    {
-        Load(path);
-    }
-
-    public override void Load(string path)
+    public void Load(string path, TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
     {
         Texture = Raylib.LoadTexture(path);
+        TextureFilter = textureFilter;
+        TextureWrap = textureWrap;
     }
 
     public override void Unload()

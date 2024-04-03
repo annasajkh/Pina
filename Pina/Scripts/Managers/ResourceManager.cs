@@ -11,12 +11,13 @@ public sealed class ResourceManager
         return (T)resourcesDictionary[key];
     }
 
-    public void Load<T>(string key, string path) where T : Resource, new()
+    public T Init<T>(string key) where T : Resource, new()
     {
         T resource = new();
-        resource.Load(path);
 
         resourcesDictionary.Add(key, resource);
+
+        return resource;
     }
 
     public void Unload<T>(string key) where T : Resource

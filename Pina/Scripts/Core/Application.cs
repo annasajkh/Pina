@@ -7,7 +7,7 @@ namespace Pina.Scripts.Core;
 
 public static class Application
 {
-    public static SceneManager SceneManager { get; set; }
+    public static SceneManager SceneManager { get; private set; }
 
     private static int? targetFPS = 60;
 
@@ -193,7 +193,7 @@ public static class Application
     /// <summary>
     /// Get current render height (it considers HiDPI)
     /// </summary>
-    public static int RenderHeightcl
+    public static int RenderHeight
     {
         get
         {
