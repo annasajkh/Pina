@@ -1,4 +1,4 @@
-﻿using Pina.Scripts.Utilities.Abstracts;
+﻿using Pina.Scripts.Abstracts;
 
 namespace Pina.Scripts.Managers;
 

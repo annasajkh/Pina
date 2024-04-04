@@ -52,26 +52,6 @@ public static class Screen
     }
 
     /// <summary>
-    /// Get camera transform matrix (view matrix)
-    /// </summary>
-    /// <param name="camera">The camera</param>
-    /// <returns>The camera transform matrix (view matrix)</returns>
-    public static Matrix4x4 GetCameraMatrix(Camera3D camera)
-    {
-        return Raylib.GetCameraMatrix(camera);
-    }
-
-    /// <summary>
-    /// Get camera 2d transform matrix
-    /// </summary>
-    /// <param name="camera">The 2D camera</param>
-    /// <returns>The camera 2D transform matrix</returns>
-    public static Matrix4x4 GetCameraMatrix2D(Camera2D camera)
-    {
-        return Raylib.GetCameraMatrix2D(camera);
-    }
-
-    /// <summary>
     /// Get the screen space position for a 3D world space position
     /// </summary>
     /// <param name="position">The world space position</param>
@@ -116,5 +96,4 @@ public static class Screen
     {
         return Raylib.GetWorldToScreen2D(position, camera);
     }
-
 }

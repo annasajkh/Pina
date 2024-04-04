@@ -1,4 +1,4 @@
-﻿namespace Pina.Scripts.Core.Components;
+﻿namespace Pina.Scripts.Components;
 
 public sealed class Timer
 {

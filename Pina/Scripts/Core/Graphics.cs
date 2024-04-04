@@ -6,6 +6,16 @@ namespace Pina.Scripts.Core;
 public static class Graphics
 {
     /// <summary>
+    /// Set texture and rectangle to be used on shapes drawing
+    /// </summary>
+    /// <param name="texture">The texture</param>
+    /// <param name="source">The rectangle source</param>
+    public static void SetShapesTexture(Texture2D texture, Rectangle source)
+    {
+        Raylib.SetShapesTexture(texture, source);
+    }
+
+    /// <summary>
     /// Set background color (framebuffer clear color)
     /// </summary>
     /// <param name="color">The color</param>

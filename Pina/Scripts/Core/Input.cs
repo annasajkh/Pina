@@ -366,4 +366,78 @@ public static class Input
     {
         return Raylib.GetTouchPointCount();
     }
+
+    /// <summary>
+    /// Enable a set of gestures using flags
+    /// </summary>
+    /// <param name="flags">The flags representing the gestures to enable</param>
+    public static void SetGesturesEnabled(Gesture flags)
+    {
+        Raylib.SetGesturesEnabled(flags);
+    }
+
+    /// <summary>
+    /// Check if a gesture have been detected
+    /// </summary>
+    /// <param name="gesture">The gesture to check</param>
+    /// <returns>True if the gesture has been detected, false otherwise</returns>
+    public static bool IsGestureDetected(Gesture gesture)
+    {
+        return Raylib.IsGestureDetected(gesture);
+    }
+
+    /// <summary>
+    /// Get latest detected gesture
+    /// </summary>
+    /// <returns>The latest detected gesture</returns>
+    public static Gesture GetGestureDetected()
+    {
+        return Raylib.GetGestureDetected();
+    }
+
+    /// <summary>
+    /// Get gesture hold time in milliseconds
+    /// </summary>
+    /// <returns>The gesture hold time in milliseconds</returns>
+    public static float GetGestureHoldDuration()
+    {
+        return Raylib.GetGestureHoldDuration();
+    }
+
+    /// <summary>
+    /// Get gesture drag vector
+    /// </summary>
+    /// <returns>The gesture drag vector</returns>
+    public static Vector2 GetGestureDragVector()
+    {
+        return Raylib.GetGestureDragVector();
+    }
+
+    /// <summary>
+    /// Get gesture drag angle
+    /// </summary>
+    /// <returns>The gesture drag angle</returns>
+    public static float GetGestureDragAngle()
+    {
+        return Raylib.GetGestureDragAngle();
+    }
+
+    /// <summary>
+    /// Get gesture pinch delta
+    /// </summary>
+    /// <returns>The gesture pinch delta</returns>
+    public static Vector2 GetGesturePinchVector()
+    {
+        return Raylib.GetGesturePinchVector();
+    }
+
+    /// <summary>
+    /// Get gesture pinch angle
+    /// </summary>
+    /// <returns>The gesture pinch angle</returns>
+    public static float GetGesturePinchAngle()
+    {
+        return Raylib.GetGesturePinchAngle();
+    }
+
 }

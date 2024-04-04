@@ -185,6 +185,33 @@ public static class Application
         return Raylib.GetClipboardText_();
     }
 
+    /// <summary>
+    /// Takes a screenshot of current screen (filename extension defines format)
+    /// </summary>
+    /// <param name="filename">The file name it will be saved to</param>
+    public static void TakeScreenshot(string filename)
+    {
+        Raylib.TakeScreenshot(filename);
+    }
+
+    /// <summary>
+    /// Setup init configuration flags (view FLAGS)
+    /// </summary>
+    /// <param name="flags">The flags</param>
+    public static void SetConfigFlags(ConfigFlags flags)
+    {
+        Raylib.SetConfigFlags(flags);
+    }
+
+    /// <summary>
+    /// Open URL with default system browser (if available)
+    /// </summary>
+    /// <param name="url"></param>
+    public static void OpenURL(string url)
+    {
+        Raylib.OpenURL(url);
+    }
+
     // TODO: implement the rest of it
 
     public static void Run(SceneManager sceneManager)
@@ -259,6 +286,33 @@ public static class Application
         if (TargetFPS != null)
         {
             Raylib.SetTargetFPS((int)TargetFPS);
+        }
+
+        if (eventWaiting)
+        {
+            Raylib.EnableEventWaiting();
+        }
+        else
+        {
+            Raylib.DisableEventWaiting();
+        }
+
+        if (showCursor)
+        {
+            Raylib.ShowCursor();
+        }
+        else
+        {
+            Raylib.HideCursor();
+        }
+
+        if (lockCursor)
+        {
+            Raylib.DisableCursor();
+        }
+        else
+        {
+            Raylib.EnableCursor();
         }
 
         Raylib.InitWindow(Window.Size.X, Window.Size.Y, Window.Title);

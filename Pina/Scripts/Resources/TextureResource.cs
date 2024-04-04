@@ -7,6 +7,10 @@ public sealed class TextureResource : Resource
     public Texture2D Texture { get; private set; }
 
     private TextureFilter textureFilter;
+
+    /// <summary>
+    /// texture scaling filter mode
+    /// </summary>
     public TextureFilter TextureFilter
     {
         get
@@ -22,6 +26,10 @@ public sealed class TextureResource : Resource
     }
 
     private TextureWrap textureWrap;
+
+    /// <summary>
+    /// texture wrapping mode
+    /// </summary>
     public TextureWrap TextureWrap
     {
         get

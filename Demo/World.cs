@@ -1,5 +1,5 @@
-﻿using Pina.Scripts.Core;
-using Pina.Scripts.Core.Abstracts;
+﻿using Pina.Scripts.Abstracts;
+using Pina.Scripts.Core;
 using Pina.Scripts.Resources;
 using Raylib_cs;
 
@@ -14,7 +14,7 @@ public class World : Scene
 
     public override void Init()
     {
-        
+
     }
 
     public override void GetInput()
