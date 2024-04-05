@@ -9,7 +9,7 @@ public class World : Scene
 {
     public override void Load()
     {
-        ResourceManager.Init<Texture>("cat").Load("Assets/Sprites/cat.png");
+        ResourceManager.Init<TextureResource>("cat").Load("Assets/Sprites/cat.png");
     }
 
     public override void Init()
@@ -33,7 +33,7 @@ public class World : Scene
 
         Graphics.ClearBackground(Color.Black);
 
-        Graphics.DrawTexture(ResourceManager.Get<Texture>("cat").Texture, 100, 100, Color.White);
+        Graphics.DrawTexture(ResourceManager.Get<TextureResource>("cat").Texture, 100, 100, Color.White);
 
         Graphics.EndDrawing();
     }
