@@ -1,14 +1,33 @@
 ﻿using Raylib_cs;
 using System.Numerics;
 
-namespace Pina.Scripts.Core.Components;
+namespace Pina.Scripts.Components;
 
 using Camera3DRaylib = Raylib_cs.Camera3D;
 
-internal class Camera3D
+public sealed class Camera3D
 {
 
     private Camera3DRaylib camera;
+
+    public Camera3DRaylib Camera
+    {
+        get
+        {
+            return camera;
+        }
+    }
+
+    /// <summary>
+    /// The transform matrix (view matrix)
+    /// </summary>
+    public Matrix4x4 Matrix
+    {
+        get
+        {
+            return Raylib.GetCameraMatrix(camera);
+        }
+    }
 
 
     /// <summary>
@@ -89,15 +108,5 @@ internal class Camera3D
         {
             camera.Projection = value;
         }
-    }
-
-    /// <summary>
-    /// Get camera transform matrix (view matrix)
-    /// </summary>
-    /// <param name="camera">The camera</param>
-    /// <returns>The camera transform matrix (view matrix)</returns>
-    public Matrix4x4 GetMatrix()
-    {
-        return Raylib.GetCameraMatrix(camera);
     }
 }

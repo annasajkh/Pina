@@ -1,14 +1,21 @@
-﻿
-using Raylib_cs;
+﻿using Raylib_cs;
 using System.Numerics;
 
-namespace Pina.Scripts.Core.Components;
+namespace Pina.Scripts.Components;
 
 using Camera2DRaylib = Raylib_cs.Camera2D;
 
-public class Camera2D
+public sealed class Camera2D
 {
     private Camera2DRaylib camera;
+
+    public Camera2DRaylib Camera
+    {
+        get
+        {
+            return camera;
+        }
+    }
 
     /// <summary>
     /// Camera offset (displacement from target)

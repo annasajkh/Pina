@@ -3,7 +3,7 @@ using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
 
-namespace Pina.Scripts.Core.Components;
+namespace Pina.Scripts.Components;
 
 public sealed class Sprite : IDrawable
 {
@@ -17,7 +17,7 @@ public sealed class Sprite : IDrawable
     public uint FrameIndex { get; set; } = 0;
     public Vector2 Origin { get; set; }
 
-    public TextureResource TextureResource { get; }
+    public Texture TextureResource { get; }
     public TextureFilter TextureFilter { get; set; } = TextureFilter.Point;
 
     public uint FrameCount
@@ -45,7 +45,7 @@ public sealed class Sprite : IDrawable
     }
     private Rectangle sourceRectangle;
 
-    public Sprite(TextureResource textureResource, Vector2 position = new Vector2(), uint rows = 1, uint columns = 1)
+    public Sprite(Texture textureResource, Vector2 position = new Vector2(), uint rows = 1, uint columns = 1)
     {
         Position = position;
         Rotation = 0;

@@ -1,6 +1,6 @@
 ﻿using Pina.Scripts.Managers;
 
-namespace Pina.Scripts.Core.Abstracts;
+namespace Pina.Scripts.Abstracts;
 
 public abstract class Scene
 {
@@ -11,7 +11,7 @@ public abstract class Scene
     public abstract void GetInput();
     public abstract void Update(float delta);
     public abstract void Draw();
-    
+
     public void Unload()
     {
         ResourceManager.UnloadAll();
