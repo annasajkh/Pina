@@ -98,21 +98,36 @@ public sealed class TextureResource : Resource
         TextureWrap = textureWrap;
     }
 
+    /// <summary>
+    /// Update GPU texture with new data
+    /// </summary>
+    /// <param name="pixels">The pixel data</param>
     public void Update(byte[] pixels)
     {
         Raylib.UpdateTexture(Texture, pixels);
     }
 
+    /// <summary>
+    /// Update GPU texture rectangle with new data
+    /// </summary>
+    /// <param name="rectangle">The texture rectangle</param>
+    /// <param name="pixels">The pixel data</param>
     public void UpdateTextureRec(Rectangle rectangle, byte[] pixels)
     {
         Raylib.UpdateTextureRec(texture, rectangle, pixels);
     }
 
-    public void GenMinmap()
+    /// <summary>
+    /// Generate GPU mipmaps for a texture
+    /// </summary>
+    public void GenMipmap()
     {
         Raylib.GenTextureMipmaps(ref texture);
     }
 
+    /// <summary>
+    /// Unload texture from GPU memory (VRAM)
+    /// </summary>
     public override void Unload()
     {
         base.Unload();

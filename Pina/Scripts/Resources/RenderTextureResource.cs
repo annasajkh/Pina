@@ -25,6 +25,9 @@ public sealed class RenderTextureResource : Resource
         RenderTexture = Raylib.LoadRenderTexture(width, height);
     }
 
+    /// <summary>
+    /// Unload render texture from GPU memory (VRAM)
+    /// </summary>
     public override void Unload()
     {
         base.Unload();

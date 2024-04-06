@@ -159,6 +159,9 @@ public sealed class ShaderResource : Resource
         Raylib.SetShaderValueTexture(Shader, locIndex, texture);
     }
 
+    /// <summary>
+    /// Unload shader from GPU memory (VRAM)
+    /// </summary>
     public override void Unload()
     {
         base.Unload();
