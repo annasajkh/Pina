@@ -98,6 +98,16 @@ public sealed class TextureResource : Resource
         TextureWrap = textureWrap;
     }
 
+    public void Update(byte[] pixels)
+    {
+        Raylib.UpdateTexture(Texture, pixels);
+    }
+
+    public void UpdateTextureRec(Rectangle rectangle, byte[] pixels)
+    {
+        Raylib.UpdateTextureRec(texture, rectangle, pixels);
+    }
+
     public void GenMinmap()
     {
         Raylib.GenTextureMipmaps(ref texture);

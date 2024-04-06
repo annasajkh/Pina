@@ -4,7 +4,7 @@ using System.Numerics;
 namespace Pina.Scripts.Utils;
 
 
-public static class MathUtils
+public static class MathHelper
 {
     /// <summary>
     /// Get (evaluate) spline point: Linear
