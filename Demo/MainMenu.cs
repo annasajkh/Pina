@@ -20,7 +20,7 @@ internal class MainMenu : Scene
     {
         if (Input.IsKeyPressed(KeyboardKey.Enter))
         {
-            Program.SceneManager.ChangeScene("World");
+            Application.SceneManager.ChangeScene("World");
         }
     }
 
