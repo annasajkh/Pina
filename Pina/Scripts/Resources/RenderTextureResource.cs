@@ -3,7 +3,7 @@
 namespace Pina.Scripts.Resources;
 
 
-public class RenderTextureResource : Resource
+public sealed class RenderTextureResource : Resource
 {
     public RenderTexture2D RenderTexture { get; private set; }
 

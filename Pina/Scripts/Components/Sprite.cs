@@ -1,4 +1,5 @@
-﻿using Pina.Scripts.Interfaces;
+﻿using Pina.Scripts.Core;
+using Pina.Scripts.Interfaces;
 using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
@@ -78,11 +79,11 @@ public sealed class Sprite : IDrawable
         sourceRectangle.X = sourceRectangle.Width * (FrameIndex % Columns);
         sourceRectangle.Y = sourceRectangle.Height * (FrameIndex / Columns);
 
-        Raylib.DrawTexturePro(TextureResource.Texture, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
+        Graphics.DrawTexturePro(TextureResource.Texture, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
     }
 
     public void DrawBoundingRectangle()
     {
-        Raylib.DrawRectangleLines((int)BoundingRectangle.X, (int)BoundingRectangle.Y, (int)BoundingRectangle.Width, (int)BoundingRectangle.Height, Color.Green);
+        Graphics.DrawRectangleLines((int)BoundingRectangle.X, (int)BoundingRectangle.Y, (int)BoundingRectangle.Width, (int)BoundingRectangle.Height, Color.Green);
     }
 }

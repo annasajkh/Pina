@@ -5,14 +5,15 @@ namespace Demo;
 
 internal static class Program
 {
-    public static SceneManager SceneManager { get; } = new("MainMenu", new MainMenu());
-
     static void Main()
     {
         Window.Title = "Demo";
 
-        SceneManager.AddScene("World", new World());
+        var sceneManager = new SceneManager("MainMenu", new MainMenu());
+        var resourceManager = new ResourceManager();
 
-        Application.Run(SceneManager);
+        sceneManager.AddScene("World", new World());
+
+        Application.Run(sceneManager, resourceManager);
     }
 }

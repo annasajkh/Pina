@@ -8,6 +8,7 @@ namespace Pina.Scripts.Core;
 public static class Application
 {
     public static SceneManager SceneManager { get; private set; }
+    public static ResourceManager ResourceManager { get; private set; }
 
     private static int? targetFPS = 60;
 
@@ -214,9 +215,10 @@ public static class Application
 
     // TODO: implement the rest of it
 
-    public static void Run(SceneManager sceneManager)
+    public static void Run(SceneManager sceneManager, ResourceManager resourceManager)
     {
         SceneManager = sceneManager;
+        ResourceManager = resourceManager;
 
         if (Window.FullScreen)
         {
@@ -345,6 +347,7 @@ public static class Application
 
         SceneManager.ActiveScene.Unload();
         Raylib.CloseWindow();
+        ResourceManager.UnloadAll();
     }
 
 }

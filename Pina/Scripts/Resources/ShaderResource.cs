@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Pina.Scripts.Resources;
 
-public class ShaderResource : Resource
+public sealed class ShaderResource : Resource
 {
     public Shader Shader { get; private set; }
 

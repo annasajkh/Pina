@@ -3,7 +3,7 @@
 public sealed class Timer
 {
     public float WaitTime { get; set; }
-    public bool IsOneshot { get; set; }
+    public bool Oneshot { get; set; }
     public float TimeLeft { get; private set; }
     public bool Paused { get; private set; }
 
@@ -12,7 +12,7 @@ public sealed class Timer
     public Timer(float waitTime, bool isOneshot)
     {
         WaitTime = waitTime;
-        IsOneshot = isOneshot;
+        Oneshot = isOneshot;
     }
 
     public void Start()
@@ -40,7 +40,7 @@ public sealed class Timer
                     OnTimeout();
                 }
 
-                if (IsOneshot)
+                if (Oneshot)
                 {
                     Paused = true;
                 }
