@@ -439,5 +439,4 @@ public static class Input
     {
         return Raylib.GetGesturePinchAngle();
     }
-
 }

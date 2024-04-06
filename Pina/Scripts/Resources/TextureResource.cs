@@ -75,12 +75,12 @@ public sealed class TextureResource : Resource
     /// <summary>
     /// Load texture from file into GPU memory (VRAM)
     /// </summary>
-    /// <param name="path">The path to the texture</param>
+    /// <param name="fileName">The filename of the texture</param>
     /// <param name="textureFilter">The texture filter</param>
     /// <param name="textureWrap">The texture wrap mode</param>
-    public void Load(string path, TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
+    public void Load(string fileName, TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
     {
-        Texture = Raylib.LoadTexture(path);
+        Texture = Raylib.LoadTexture(fileName);
 
         TextureFilter = textureFilter;
         TextureWrap = textureWrap;

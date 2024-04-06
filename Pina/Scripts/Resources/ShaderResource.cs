@@ -21,18 +21,18 @@ public sealed class ShaderResource : Resource
     /// <summary>
     /// Load shader from files and bind default locations
     /// </summary>
-    /// <param name="vertexShaderPath">The vertex shader path</param>
-    /// <param name="fragmentShaderPath">The fragment shader path</param>
-    public void Load(string vertexShaderPath, string fragmentShaderPath)
+    /// <param name="vsFileName">The vertex shader file name</param>
+    /// <param name="fsFileName">The fragment shader file name</param>
+    public void Load(string vsFileName, string fsFileName)
     {
-        Shader = Raylib.LoadShader(vertexShaderPath, fragmentShaderPath);
+        Shader = Raylib.LoadShader(vsFileName, fsFileName);
     }
 
     /// <summary>
     /// Load shader from code strings and bind default locations
     /// </summary>
-    /// <param name="vertexShaderPath">The vertex shader code</param>
-    /// <param name="fragmentShaderPath">The fragment shader code</param>
+    /// <param name="vertexShaderCode">The vertex shader code</param>
+    /// <param name="fragmentShaderCode">The fragment shader code</param>
     public void LoadFromMemory(string vertexShaderCode, string fragmentShaderCode)
     {
         Shader = Raylib.LoadShaderFromMemory(vertexShaderCode, fragmentShaderCode);
