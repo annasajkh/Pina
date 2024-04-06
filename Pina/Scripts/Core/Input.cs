@@ -7,6 +7,27 @@ namespace Pina.Scripts.Core;
 public static class Input
 {
     /// <summary>
+    /// Mouse X position
+    public static int MouseX
+    {
+        get
+        {
+            return Raylib.GetMouseX();
+        }
+    }
+
+    /// <summary>
+    /// Mouse Y position
+    /// </summary>
+    public static int MouseY
+    {
+        get
+        {
+            return Raylib.GetMouseY();
+        }
+    }
+
+    /// <summary>
     /// Check if a key has been pressed once
     /// </summary>
     /// <param name="key">The key to check</param>
@@ -225,24 +246,6 @@ public static class Input
     public static bool IsMouseButtonUp(MouseButton button)
     {
         return Raylib.IsMouseButtonUp(button);
-    }
-
-    /// <summary>
-    /// Get mouse position X
-    /// </summary>
-    /// <returns>The mouse position X</returns>
-    public static int GetMouseX()
-    {
-        return Raylib.GetMouseX();
-    }
-
-    /// <summary>
-    /// Get mouse position Y
-    /// </summary>
-    /// <returns>The mouse position Y</returns>
-    public static int GetMouseY()
-    {
-        return Raylib.GetMouseY();
     }
 
     /// <summary>
