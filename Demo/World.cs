@@ -13,7 +13,7 @@ public class World : Scene
     public override void Load()
     {
         ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
-        ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(ResourceManager.Get<ImageResource>("catImage").Image);
+        ResourceManager.Init<TextureResource>("catTexture").LoadFromImage((Image)ResourceManager.Get<ImageResource>("catImage").Image!);
     }
 
     public override void Init()
@@ -39,7 +39,7 @@ public class World : Scene
         Graphics.BeginDrawing();
         Graphics.ClearBackground(Color.Black);
 
-        Graphics.DrawTexture(ResourceManager.Get<TextureResource>("cat").Texture, 100, 100, color);
+        Graphics.DrawTexture((Texture2D)ResourceManager.Get<TextureResource>("catTexture").Texture!, 100, 100, color);
 
         Graphics.EndDrawing();
     }

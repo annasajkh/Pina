@@ -816,8 +816,6 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-
-
         Raylib.UnloadImage((Image)Image);
     }
 }

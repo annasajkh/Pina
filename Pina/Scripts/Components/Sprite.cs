@@ -55,7 +55,7 @@ public sealed class Sprite : IDrawable
         Rows = rows;
         Columns = columns;
         TextureResource = textureResource;
-        sourceRectangle = new Rectangle(0, 0, TextureResource.Texture.Width / columns, TextureResource.Texture.Height / rows);
+        sourceRectangle = new Rectangle(0, 0, ((Texture2D)TextureResource.Texture!).Width / columns, ((Texture2D)TextureResource.Texture!).Height / rows);
 
         Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
     }
@@ -79,7 +79,7 @@ public sealed class Sprite : IDrawable
         sourceRectangle.X = sourceRectangle.Width * (FrameIndex % Columns);
         sourceRectangle.Y = sourceRectangle.Height * (FrameIndex / Columns);
 
-        Graphics.DrawTexturePro(TextureResource.Texture, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
+        Graphics.DrawTexturePro((Texture2D)TextureResource.Texture!, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
     }
 
     public void DrawBoundingRectangle()
