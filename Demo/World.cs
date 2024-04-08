@@ -8,12 +8,15 @@ namespace Demo;
 
 public class World : Scene
 {
-    private static Color color = Color.White;
+    private Color color = Color.White;
+
+    private ImageResource catImageResource;
+    private TextureResource catTextureResource;
 
     public override void Load()
     {
-        ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
-        ResourceManager.Init<TextureResource>("catTexture").LoadFromImage((Image)ResourceManager.Get<ImageResource>("catImage").Image!);
+        catImageResource = ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
+        catTextureResource = ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(catImageResource.image);
     }
 
     public override void Init()
@@ -32,6 +35,7 @@ public class World : Scene
     public override void Update(float delta)
     {
         color.Alpha((float)((Math.Sin(Application.Time * 5) + 1) / 2));
+        catImageResource.Rotate((int)Application.Time % 360);
     }
 
     public override void Draw()
@@ -39,7 +43,7 @@ public class World : Scene
         Graphics.BeginDrawing();
         Graphics.ClearBackground(Color.Black);
 
-        Graphics.DrawTexture((Texture2D)ResourceManager.Get<TextureResource>("catTexture").Texture!, 100, 100, color);
+        Graphics.DrawTexture(catTextureResource.texture, 100, 100, color);
 
         Graphics.EndDrawing();
     }

@@ -7,6 +7,79 @@ namespace Pina.Scripts.Utils;
 public static class MathHelper
 {
     /// <summary>
+    /// Clamp float value within a specified range
+    /// </summary>
+    /// <param name="value">Value to clamp</param>
+    /// <param name="min">Minimum value</param>
+    /// <param name="max">Maximum value</param>
+    /// <returns>The clamped value</returns>
+    public static float Clamp(float value, float min, float max)
+    {
+        return Raymath.Clamp(value, min, max);
+    }
+
+    /// <summary>
+    /// Calculate linear interpolation between two floats
+    /// </summary>
+    /// <param name="start">Start value</param>
+    /// <param name="end">End value</param>
+    /// <param name="amount">Interpolation amount</param>
+    /// <returns>The interpolated value</returns>
+    public static float Lerp(float start, float end, float amount)
+    {
+        return Raymath.Lerp(start, end, amount);
+    }
+
+    /// <summary>
+    /// Normalize input value within input range
+    /// </summary>
+    /// <param name="value">Value to normalize</param>
+    /// <param name="start">Start of the input range</param>
+    /// <param name="end">End of the input range</param>
+    /// <returns>The normalized value</returns>
+    public static float Normalize(float value, float start, float end)
+    {
+        return Raymath.Normalize(value, start, end);
+    }
+
+    /// <summary>
+    /// Remap input value within input range to output range
+    /// </summary>
+    /// <param name="value">Value to remap</param>
+    /// <param name="inputStart">Start of the input range</param>
+    /// <param name="inputEnd">End of the input range</param>
+    /// <param name="outputStart">Start of the output range</param>
+    /// <param name="outputEnd">End of the output range</param>
+    /// <returns>The remapped value</returns>
+    public static float Remap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd)
+    {
+        return Raymath.Remap(value, inputStart, inputEnd, outputStart, outputEnd);
+    }
+
+    /// <summary>
+    /// Wrap input value within a specified range
+    /// </summary>
+    /// <param name="value">Value to wrap</param>
+    /// <param name="min">Minimum value</param>
+    /// <param name="max">Maximum value</param>
+    /// <returns>The wrapped value</returns>
+    public static float Wrap(float value, float min, float max)
+    {
+        return Raymath.Wrap(value, min, max);
+    }
+
+    /// <summary>
+    /// Check whether two given floats are almost equal
+    /// </summary>
+    /// <param name="x">First float</param>
+    /// <param name="y">Second float</param>
+    /// <returns>True if the floats are almost equal, false otherwise</returns>
+    public static int FloatEquals(float x, float y)
+    {
+        return Raymath.FloatEquals(x, y);
+    }
+
+    /// <summary>
     /// Get (evaluate) spline point: Linear
     /// </summary>
     /// <param name="startPos">Start position</param>
