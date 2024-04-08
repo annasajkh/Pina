@@ -12,7 +12,8 @@ public class World : Scene
 
     public override void Load()
     {
-        ResourceManager.Init<TextureResource>("cat").Load("Assets/Sprites/cat.png");
+        ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
+        ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(ResourceManager.Get<ImageResource>("catImage").Image);
     }
 
     public override void Init()

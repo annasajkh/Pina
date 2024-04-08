@@ -5,23 +5,10 @@ namespace Pina.Scripts.Resources;
 
 public sealed class TextureResource : Resource
 {
-    private Texture2D texture;
-    
     /// <summary>
     /// The raylib texture
     /// </summary>
-    public Texture2D Texture 
-    { 
-        get
-        {
-            return texture;
-        }
-
-        private set
-        {
-            texture = value;
-        }
-    }
+    public Texture2D? Texture { get; private set; }
 
     /// <summary>
     /// determine if the texture is ready
@@ -30,7 +17,12 @@ public sealed class TextureResource : Resource
     {
         get
         {
-            return Raylib.IsTextureReady(Texture);
+            if (Texture == null)
+            {
+                throw new Exception("Error: Texture is not loaded yet");
+            }
+
+            return Raylib.IsTextureReady((Texture2D)Texture);
         }
     }
 
@@ -48,8 +40,13 @@ public sealed class TextureResource : Resource
 
         set
         {
+            if (Texture == null)
+            {
+                throw new Exception("Error: Texture is not loaded yet");
+            }
+
             textureFilter = value;
-            Raylib.SetTextureFilter(Texture, textureFilter);
+            Raylib.SetTextureFilter((Texture2D)Texture, textureFilter);
         }
     }
 
@@ -67,8 +64,13 @@ public sealed class TextureResource : Resource
 
         set
         {
+            if (Texture == null)
+            {
+                throw new Exception("Error: Texture is not loaded yet");
+            }
+
             textureWrap = value;
-            Raylib.SetTextureWrap(Texture, textureWrap);
+            Raylib.SetTextureWrap((Texture2D)Texture, textureWrap);
         }
     }
 
@@ -80,6 +82,11 @@ public sealed class TextureResource : Resource
     /// <param name="textureWrap">The texture wrap mode</param>
     public void Load(string fileName, TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
     {
+        if (Texture != null)
+        {
+            Raylib.UnloadTexture((Texture2D)Texture);
+        }
+
         Texture = Raylib.LoadTexture(fileName);
 
         TextureFilter = textureFilter;
@@ -92,6 +99,11 @@ public sealed class TextureResource : Resource
     /// <param name="image">The image</param>
     public void LoadFromImage(Image image, TextureFilter textureFilter = TextureFilter.Bilinear, TextureWrap textureWrap = TextureWrap.Clamp)
     {
+        if (Texture != null)
+        {
+            Raylib.UnloadTexture((Texture2D)Texture);
+        }
+
         Texture = Raylib.LoadTextureFromImage(image);
 
         TextureFilter = textureFilter;
@@ -104,7 +116,12 @@ public sealed class TextureResource : Resource
     /// <param name="pixels">The pixel data</param>
     public void Update(byte[] pixels)
     {
-        Raylib.UpdateTexture(Texture, pixels);
+        if (Texture == null)
+        {
+            throw new Exception("Error: Texture is not loaded yet");
+        }
+
+        Raylib.UpdateTexture((Texture2D)Texture, pixels);
     }
 
     /// <summary>
@@ -114,7 +131,12 @@ public sealed class TextureResource : Resource
     /// <param name="pixels">The pixel data</param>
     public void UpdateTextureRec(Rectangle rectangle, byte[] pixels)
     {
-        Raylib.UpdateTextureRec(texture, rectangle, pixels);
+        if (Texture == null)
+        {
+            throw new Exception("Error: Texture is not loaded yet");
+        }
+
+        Raylib.UpdateTextureRec((Texture2D)Texture, rectangle, pixels);
     }
 
     /// <summary>
@@ -122,7 +144,13 @@ public sealed class TextureResource : Resource
     /// </summary>
     public void GenMipmap()
     {
-        Raylib.GenTextureMipmaps(ref texture);
+        if (Texture == null)
+        {
+            throw new Exception("Error: Texture is not loaded yet");
+        }
+
+        var textureTemp = (Texture2D)Texture;
+        Raylib.GenTextureMipmaps(ref textureTemp);
     }
 
     /// <summary>
@@ -131,7 +159,12 @@ public sealed class TextureResource : Resource
     public override void Unload()
     {
         base.Unload();
+        
+        if (Texture == null)
+        {
+            throw new Exception("Error: Texture is not loaded yet");
+        }
 
-        Raylib.UnloadTexture(Texture);
+        Raylib.UnloadTexture((Texture2D)Texture);
     }
 }
