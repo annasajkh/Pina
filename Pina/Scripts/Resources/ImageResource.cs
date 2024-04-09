@@ -401,19 +401,22 @@ public sealed class ImageResource : Resource
         Raylib.ImageFlipHorizontal(ref image);
     }
 
-    /// <summary>
-    /// Rotate image by input angle in degrees (-359 to 359)
-    /// </summary>
-    /// <param name="degrees">The angle in degrees</param>
-    public void Rotate(int degrees)
-    {
-        if (!Ready)
-        {
-            throw new Exception("Error: Image is not loaded yet");
-        }
 
-        Raylib.ImageRotate(ref image, degrees); // <-------------- for some reason this method cause memory leak wtf???
-    }
+    // --------------------- This Method Leaks Memory Lmao ----------------------------
+    ///// <summary>
+    ///// Rotate image by input angle in degrees (-359 to 359)
+    ///// </summary>
+    ///// <param name="degrees">The angle in degrees</param>
+    //public void Rotate(int degrees)
+    //{
+    //    if (!Ready)
+    //    {
+    //        throw new Exception("Error: Image is not loaded yet");
+    //    }
+
+    //    Raylib.ImageRotate(ref image, degrees);
+    //}
+    // --------------------------------------------------------------------------------
 
     /// <summary>
     /// Rotate image clockwise 90deg

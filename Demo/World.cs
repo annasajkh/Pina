@@ -3,6 +3,7 @@ using Pina.Scripts.Core;
 using Pina.Scripts.Extensions;
 using Pina.Scripts.Resources;
 using Raylib_cs;
+using Timer = Pina.Scripts.Components.Timer;
 
 namespace Demo;
 
@@ -13,10 +14,23 @@ public class World : Scene
     private ImageResource catImageResource;
     private TextureResource catTextureResource;
 
+    private Timer changeTimer = new(1f, false);
+    private Random random = new();
+
     public override void Load()
     {
         catImageResource = ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
         catTextureResource = ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(catImageResource.image);
+
+        changeTimer.OnTimeout += () =>
+        {
+            catImageResource.ColorInvert();
+            catImageResource.FlipHorizontal();
+            catImageResource.DrawCircle(random.Next(100), random.Next(100), 10, Color.Red);
+            catTextureResource.LoadFromImage(catImageResource.image);
+        };
+
+        changeTimer.Start();
     }
 
     public override void Init()
@@ -26,7 +40,7 @@ public class World : Scene
 
     public override void GetInput()
     {
-        if (Input.IsKeyPressed(KeyboardKey.Escape))
+        if (Input.IsKeyPressed(KeyboardKey.Q))
         {
             Application.SceneManager.ChangeScene("MainMenu");
         }
@@ -35,7 +49,8 @@ public class World : Scene
     public override void Update(float delta)
     {
         color.Alpha((float)((Math.Sin(Application.Time * 5) + 1) / 2));
-        catImageResource.Rotate((int)Application.Time % 360);
+
+        changeTimer.Step(delta);
     }
 
     public override void Draw()
