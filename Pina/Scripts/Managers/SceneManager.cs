@@ -26,13 +26,13 @@ public sealed class SceneManager
             throw new Exception("Error: Cannot unload active scene");
         }
 
-        ActiveScene.Unload();
+        ActiveScene.UnloadInternal();
         scenes.Remove(name);
     }
 
     public void ChangeScene(string sceneName)
     {
-        ActiveScene.Unload();
+        ActiveScene.UnloadInternal();
         ActiveScene = scenes[sceneName];
 
         ActiveScene.Load();

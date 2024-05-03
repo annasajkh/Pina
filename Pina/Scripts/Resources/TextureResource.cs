@@ -159,7 +159,6 @@ public sealed class TextureResource : Resource
     /// </summary>
     public override void Unload()
     {
-        base.Unload();
         
         if (!Ready)
         {
@@ -167,5 +166,7 @@ public sealed class TextureResource : Resource
         }
 
         Raylib.UnloadTexture(texture2D);
+
+        base.Unload();
     }
 }

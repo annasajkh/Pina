@@ -345,7 +345,7 @@ public static class Application
             SceneManager.ActiveScene.Draw();
         }
 
-        SceneManager.ActiveScene.Unload();
+        SceneManager.ActiveScene.UnloadInternal();
         ResourceManager.UnloadAll();
         Raylib.CloseWindow();
     }

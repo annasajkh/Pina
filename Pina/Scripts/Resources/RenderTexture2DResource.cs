@@ -42,13 +42,13 @@ public sealed class RenderTexture2DResource : Resource
     /// </summary>
     public override void Unload()
     {
-        base.Unload();
-
         if (!Ready)
         {
             throw new Exception("Error: RenderTexture is not loaded yet");
         }
 
         Raylib.UnloadRenderTexture(renderTexture2D);
+
+        base.Unload();
     }
 }

@@ -253,13 +253,13 @@ public sealed class ShaderResource : Resource
     /// </summary>
     public override void Unload()
     {
-        base.Unload();
-
         if (!Ready)
         {
             throw new Exception("Error: Shader is not loaded yet");
         }
 
         Raylib.UnloadShader(shader);
+
+        base.Unload();
     }
 }

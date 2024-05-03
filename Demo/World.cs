@@ -19,6 +19,7 @@ public class World : Scene
 
     public override void Load()
     {
+        Console.WriteLine("---------------------------------------------------------");
         catImageResource = ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
         catTextureResource = ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(catImageResource.Image);
 
@@ -61,5 +62,12 @@ public class World : Scene
         Graphics.DrawTexture(catTextureResource.Texture2D, 100, 100, color);
 
         Graphics.EndDrawing();
+    }
+
+    public override void Unload()
+    {
+        base.Unload();
+
+        Console.WriteLine("---------------------------------------------------------");
     }
 }

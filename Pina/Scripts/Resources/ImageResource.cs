@@ -790,13 +790,13 @@ public sealed class ImageResource : Resource
     /// </summary>
     public override void Unload()
     {
-        base.Unload();
-
         if (!Ready)
         {
             throw new Exception("Error: Image is not loaded yet");
         }
 
         Raylib.UnloadImage(image);
+
+        base.Unload();
     }
 }

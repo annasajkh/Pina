@@ -12,8 +12,14 @@ public abstract class Scene
     public abstract void Update(float delta);
     public abstract void Draw();
 
-    public void Unload()
+    public virtual void Unload()
     {
+        Console.WriteLine($"Scene: {GetType().Name} is unloaded");
+    }
+
+    public void UnloadInternal()
+    {
+        Unload();
         ResourceManager.UnloadAll();
     }
 }
