@@ -5,7 +5,12 @@ namespace Pina.Scripts.Resources;
 
 public sealed class ShaderResource : Resource
 {
-    public Shader shader;
+    private Shader shader;
+    public Shader Shader
+    {
+        get => shader;
+        private set => shader = value;
+    }
 
     /// <summary>
     /// if a shader is ready

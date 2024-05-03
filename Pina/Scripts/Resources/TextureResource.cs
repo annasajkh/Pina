@@ -5,10 +5,12 @@ namespace Pina.Scripts.Resources;
 
 public sealed class TextureResource : Resource
 {
-    /// <summary>
-    /// The raylib texture
-    /// </summary>
-    public Texture2D texture;
+    private Texture2D texture2D;
+    public Texture2D Texture2D
+    {
+        get => texture2D;
+        private set => texture2D = value;
+    }
 
     /// <summary>
     /// determine if the texture is ready
@@ -17,7 +19,7 @@ public sealed class TextureResource : Resource
     {
         get
         {
-            return Raylib.IsTextureReady(texture);
+            return Raylib.IsTextureReady(texture2D);
         }
     }
 
@@ -41,7 +43,7 @@ public sealed class TextureResource : Resource
             }
 
             textureFilter = value;
-            Raylib.SetTextureFilter(texture, textureFilter);
+            Raylib.SetTextureFilter(texture2D, textureFilter);
         }
     }
 
@@ -65,7 +67,7 @@ public sealed class TextureResource : Resource
             }
 
             textureWrap = value;
-            Raylib.SetTextureWrap(texture, textureWrap);
+            Raylib.SetTextureWrap(texture2D, textureWrap);
         }
     }
 
@@ -79,10 +81,10 @@ public sealed class TextureResource : Resource
     {
         if (Ready)
         {
-            Raylib.UnloadTexture(texture);
+            Raylib.UnloadTexture(texture2D);
         }
 
-        texture = Raylib.LoadTexture(fileName);
+        texture2D = Raylib.LoadTexture(fileName);
 
         TextureFilter = textureFilter;
         TextureWrap = textureWrap;
@@ -98,10 +100,10 @@ public sealed class TextureResource : Resource
     {
         if (Ready)
         {
-            Raylib.UnloadTexture(texture);
+            Raylib.UnloadTexture(texture2D);
         }
 
-        texture = Raylib.LoadTextureFromImage(image);
+        texture2D = Raylib.LoadTextureFromImage(image);
 
         TextureFilter = textureFilter;
         TextureWrap = textureWrap;
@@ -120,7 +122,7 @@ public sealed class TextureResource : Resource
             throw new Exception("Error: Texture is not loaded yet");
         }
 
-        Raylib.UpdateTexture(texture, pixels);
+        Raylib.UpdateTexture(texture2D, pixels);
     }
 
     /// <summary>
@@ -135,7 +137,7 @@ public sealed class TextureResource : Resource
             throw new Exception("Error: Texture is not loaded yet");
         }
 
-        Raylib.UpdateTextureRec(texture, rectangle, pixels);
+        Raylib.UpdateTextureRec(texture2D, rectangle, pixels);
     }
 
     /// <summary>
@@ -148,7 +150,7 @@ public sealed class TextureResource : Resource
             throw new Exception("Error: Texture is not loaded yet");
         }
 
-        var textureTemp = texture;
+        var textureTemp = texture2D;
         Raylib.GenTextureMipmaps(ref textureTemp);
     }
 
@@ -164,6 +166,6 @@ public sealed class TextureResource : Resource
             throw new Exception("Error: Texture is not loaded yet");
         }
 
-        Raylib.UnloadTexture(texture);
+        Raylib.UnloadTexture(texture2D);
     }
 }

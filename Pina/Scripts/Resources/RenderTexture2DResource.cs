@@ -3,15 +3,20 @@
 namespace Pina.Scripts.Resources;
 
 
-public sealed class RenderTextureResource : Resource
+public sealed class RenderTexture2DResource : Resource
 {
-    public RenderTexture2D renderTexture;
+    private RenderTexture2D renderTexture2D;
+    public RenderTexture2D RenderTexture2D
+    {
+        get => renderTexture2D;
+        private set => renderTexture2D = value;
+    }
 
     public bool Ready
     {
         get
         {
-            return Raylib.IsRenderTextureReady(renderTexture);
+            return Raylib.IsRenderTextureReady(renderTexture2D);
         }
     }
 
@@ -20,14 +25,14 @@ public sealed class RenderTextureResource : Resource
     /// </summary>
     /// <param name="width">The width of render texture</param>
     /// <param name="height">The height of render texture</param>
-    public RenderTextureResource Load(int width, int height)
+    public RenderTexture2DResource Load(int width, int height)
     {
         if (Ready)
         {
-            Raylib.UnloadRenderTexture(renderTexture);
+            Raylib.UnloadRenderTexture(renderTexture2D);
         }
 
-        renderTexture = Raylib.LoadRenderTexture(width, height);
+        renderTexture2D = Raylib.LoadRenderTexture(width, height);
 
         return this;
     }
@@ -44,6 +49,6 @@ public sealed class RenderTextureResource : Resource
             throw new Exception("Error: RenderTexture is not loaded yet");
         }
 
-        Raylib.UnloadRenderTexture(renderTexture);
+        Raylib.UnloadRenderTexture(renderTexture2D);
     }
 }

@@ -14,20 +14,20 @@ public class World : Scene
     private ImageResource catImageResource;
     private TextureResource catTextureResource;
 
-    private Timer changeTimer = new(1f, false);
+    private Timer changeTimer = new(0.01f, false);
     private Random random = new();
 
     public override void Load()
     {
         catImageResource = ResourceManager.Init<ImageResource>("catImage").Load("Assets/Sprites/cat.png");
-        catTextureResource = ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(catImageResource.image);
+        catTextureResource = ResourceManager.Init<TextureResource>("catTexture").LoadFromImage(catImageResource.Image);
 
         changeTimer.OnTimeout += () =>
         {
             catImageResource.ColorInvert();
             catImageResource.FlipHorizontal();
             catImageResource.DrawCircle(random.Next(100), random.Next(100), 10, Color.Red);
-            catTextureResource.LoadFromImage(catImageResource.image);
+            catTextureResource.LoadFromImage(catImageResource.Image);
         };
 
         changeTimer.Start();
@@ -58,7 +58,7 @@ public class World : Scene
         Graphics.BeginDrawing();
         Graphics.ClearBackground(Color.Black);
 
-        Graphics.DrawTexture(catTextureResource.texture, 100, 100, color);
+        Graphics.DrawTexture(catTextureResource.Texture2D, 100, 100, color);
 
         Graphics.EndDrawing();
     }

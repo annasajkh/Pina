@@ -5,7 +5,12 @@ namespace Pina.Scripts.Resources;
 
 public sealed class ImageResource : Resource
 {
-    public Image image;
+    private Image image;
+    public Image Image 
+    { 
+        get => image; 
+        private set => image = value; 
+    }
 
     public bool Ready
     {
