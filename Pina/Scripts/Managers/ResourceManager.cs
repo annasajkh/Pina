@@ -26,6 +26,19 @@ public sealed class ResourceManager
         resourcesDictionary.Remove(key);
     }
 
+    public bool IsAllReady()
+    {
+        foreach (var item in resourcesDictionary)
+        {
+            if (!item.Value.Ready)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void UnloadAll()
     {
         foreach (var item in resourcesDictionary)

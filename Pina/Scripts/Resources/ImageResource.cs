@@ -12,7 +12,7 @@ public sealed class ImageResource : Resource
         private set => image = value; 
     }
 
-    public bool Ready
+    public override bool Ready
     {
         get
         {

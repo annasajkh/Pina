@@ -12,7 +12,7 @@ public sealed class RenderTexture2DResource : Resource
         private set => renderTexture2D = value;
     }
 
-    public bool Ready
+    public override bool Ready
     {
         get
         {

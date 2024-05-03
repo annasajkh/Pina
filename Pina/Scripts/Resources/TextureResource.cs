@@ -15,7 +15,7 @@ public sealed class TextureResource : Resource
     /// <summary>
     /// determine if the texture is ready
     /// </summary>
-    public bool Ready
+    public override bool Ready
     {
         get
         {
