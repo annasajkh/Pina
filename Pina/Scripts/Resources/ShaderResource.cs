@@ -8,8 +8,14 @@ public sealed class ShaderResource : Resource
     private Shader shader;
     public Shader Shader
     {
-        get => shader;
-        private set => shader = value;
+        get
+        {
+            return shader;
+        }
+        private set
+        {
+            shader = value;
+        }
     }
 
     /// <summary>

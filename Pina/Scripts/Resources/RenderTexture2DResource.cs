@@ -8,8 +8,14 @@ public sealed class RenderTexture2DResource : Resource
     private RenderTexture2D renderTexture2D;
     public RenderTexture2D RenderTexture2D
     {
-        get => renderTexture2D;
-        private set => renderTexture2D = value;
+        get
+        {
+            return renderTexture2D;
+        }
+        private set
+        {
+            renderTexture2D = value;
+        }
     }
 
     public override bool Ready

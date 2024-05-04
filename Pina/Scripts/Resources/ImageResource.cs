@@ -7,9 +7,15 @@ public sealed class ImageResource : Resource
 {
     private Image image;
     public Image Image 
-    { 
-        get => image; 
-        private set => image = value; 
+    {
+        get
+        {
+            return image;
+        }
+        private set
+        {
+            image = value;
+        }
     }
 
     public override bool Ready

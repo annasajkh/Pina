@@ -23,10 +23,7 @@ public sealed class Sprite : IDrawable
 
     public uint FrameCount
     {
-        get
-        {
-            return Rows * Columns;
-        }
+        get => Rows * Columns;
     }
 
     public Rectangle BoundingRectangle
@@ -44,6 +41,7 @@ public sealed class Sprite : IDrawable
             return new Vector2(sourceRectangle.Width * Scale.X, sourceRectangle.Height * Scale.Y);
         }
     }
+
     private Rectangle sourceRectangle;
 
     public Sprite(TextureResource textureResource, Vector2 position = new Vector2(), uint rows = 1, uint columns = 1)

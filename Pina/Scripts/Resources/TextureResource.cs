@@ -8,8 +8,14 @@ public sealed class TextureResource : Resource
     private Texture2D texture2D;
     public Texture2D Texture2D
     {
-        get => texture2D;
-        private set => texture2D = value;
+        get
+        {
+            return texture2D;
+        }
+        private set
+        {
+            texture2D = value;
+        }
     }
 
     /// <summary>
