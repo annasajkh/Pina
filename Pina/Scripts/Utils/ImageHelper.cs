@@ -125,16 +125,6 @@ public static class ImageHelper
     }
 
     /// <summary>
-    /// Create a duplicate image
-    /// </summary>
-    /// <param name="image">Source image</param>
-    /// <returns>The duplicated image</returns>
-    public static Image ImageCopy(Image image)
-    {
-        return Raylib.ImageCopy(image);
-    }
-
-    /// <summary>
     /// Create an image from a portion of another image
     /// </summary>
     /// <param name="image">Source image</param>
@@ -222,17 +212,4 @@ public static class ImageHelper
     {
         return Raylib.GetImageAlphaBorder(image, threshold);
     }
-
-    /// <summary>
-    /// Get the pixel color of an image at a specified position
-    /// </summary>
-    /// <param name="image">Source image</param>
-    /// <param name="x">X coordinate of the pixel</param>
-    /// <param name="y">Y coordinate of the pixel</param>
-    /// <returns>The color of the pixel at the specified position</returns>
-    public static Color GetImageColor(Image image, int x, int y)
-    {
-        return Raylib.GetImageColor(image, x, y);
-    }
-
 }
