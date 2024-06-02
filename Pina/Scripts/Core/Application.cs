@@ -216,7 +216,7 @@ public static class Application
 
     // TODO: implement the rest of it
 
-    public static void Run(SceneManager sceneManager, WindowConfig windowConfig)
+    public static void Run(WindowConfig windowConfig, SceneManager sceneManager)
     {
         SceneManager = sceneManager;
 

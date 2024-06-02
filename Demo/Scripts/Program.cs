@@ -20,6 +20,6 @@ internal static class Program
 
         sceneManager.SetActiveScene("MainMenu");
 
-        Application.Run(sceneManager, windowConfig);
+        Application.Run(windowConfig, sceneManager);
     }
 }
