@@ -15,6 +15,7 @@ internal static class Program
 
         sceneManager.AddScene("MainMenu", new MainMenu());
         sceneManager.AddScene("World", new World());
+
         sceneManager.SetActiveScene("MainMenu");
 
         Application.Run(sceneManager);

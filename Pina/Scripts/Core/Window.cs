@@ -454,17 +454,17 @@ public static class Window
     /// <summary>
     /// Set window state: high DPI
     /// </summary>
-    public static bool HighDPI { get; }
+    public static bool HighDPI { get; set; }
 
     /// <summary>
     /// Set window state: transparent
     /// </summary>
-    public static bool Transparent { get; }
+    public static bool Transparent { get; set; }
 
     /// <summary>
     /// Set window state: Msaa 4x Hint
     /// </summary>
-    public static bool Msaa4xHint { get; }
+    public static bool Msaa4xHint { get; set; }
 
     /// <summary>
     /// Check if application should close (Escape Key pressed or windows close icon clicked)
