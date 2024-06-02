@@ -31,7 +31,7 @@ public class World : Scene
 
     public override void GetInput()
     {
-        if (Input.IsKeyPressed(KeyboardKey.Escape))
+        if (Input.IsKeyPressed(KeyboardKey.Q))
         {
             Application.SceneManager.ChangeScene("MainMenu");
         }

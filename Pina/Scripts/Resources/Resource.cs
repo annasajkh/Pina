@@ -16,4 +16,9 @@ public abstract class Resource : IDisposable
     }
 
     protected abstract void Dispose(bool disposing);
+
+    ~Resource()
+    {
+        Dispose();
+    }
 }

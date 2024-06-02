@@ -28,7 +28,6 @@ public class Player : Entity, IDrawable, IDisposable
     public void Draw()
     {
         Graphics.DrawTextureRec(catTexture.raylibTexture2D, catTexture.SourceRectangle, Position, Color.White);
-
     }
 
     public override void Update(float delta)
