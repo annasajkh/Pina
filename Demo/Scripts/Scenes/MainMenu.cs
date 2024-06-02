@@ -33,7 +33,7 @@ internal class MainMenu : Scene
     {
         Graphics.BeginDrawing();
 
-        Graphics.ClearBackground(Color.Black);
+        Graphics.ClearBackground(new Color(0, 0, 0, 0));
 
         Graphics.DrawText("Press Enter to Play", Window.Size.X / 2 - 100, Window.Size.Y / 2, 20, Color.White);
 

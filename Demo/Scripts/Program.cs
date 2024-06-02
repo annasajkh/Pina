@@ -1,5 +1,6 @@
 ﻿using Demo.Scripts.Scenes;
 using Pina.Scripts.Core;
+using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
 using System.Security.Principal;
 
@@ -9,7 +10,7 @@ internal static class Program
 {
     static void Main()
     {
-        Window.Title = "Cat Shooter";
+        WindowConfig windowConfig = new WindowConfig(title: "Cat Shooter", size: new(960, 540));
 
         var sceneManager = new SceneManager();
 
@@ -18,6 +19,6 @@ internal static class Program
 
         sceneManager.SetActiveScene("MainMenu");
 
-        Application.Run(sceneManager);
+        Application.Run(sceneManager, windowConfig);
     }
 }

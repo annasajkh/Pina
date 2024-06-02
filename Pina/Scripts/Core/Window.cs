@@ -467,13 +467,13 @@ public static class Window
     public static bool Msaa4xHint { get; set; }
 
     /// <summary>
-    /// Check if application should close (Escape Key pressed or windows close icon clicked)
+    /// Get window scale dpi
     /// </summary>
-    public static bool ShouldClose
+    public static Vector2 ScaleDPI
     {
         get
         {
-            return Raylib.WindowShouldClose();
+            return Raylib.GetWindowScaleDPI();
         }
     }
 
@@ -488,14 +488,6 @@ public static class Window
         }
     }
 
-    public static Vector2 ScaleDPI
-    {
-        get
-        {
-            return Raylib.GetWindowScaleDPI();
-        }
-    }
-
     /// <summary>
     /// Get native window handle
     /// </summary>
@@ -505,14 +497,5 @@ public static class Window
         {
             return Raylib.GetWindowHandle();
         }
-    }
-
-
-    /// <summary>
-    /// Close window and unload OpenGL context
-    /// </summary>
-    public static void Close()
-    {
-        Raylib.CloseWindow();
     }
 }

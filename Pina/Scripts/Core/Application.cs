@@ -1,6 +1,7 @@
 ﻿using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
 using Raylib_cs;
+using System.Numerics;
 
 namespace Pina.Scripts.Core;
 
@@ -8,6 +9,7 @@ namespace Pina.Scripts.Core;
 public static class Application
 {
     public static SceneManager SceneManager { get; private set; }
+    
 
     private static int? targetFPS = 60;
 
@@ -214,71 +216,71 @@ public static class Application
 
     // TODO: implement the rest of it
 
-    public static void Run(SceneManager sceneManager)
+    public static void Run(SceneManager sceneManager, WindowConfig windowConfig)
     {
         SceneManager = sceneManager;
 
-        if (Window.FullScreen)
+        if (windowConfig.FullScreen)
         {
             Raylib.SetConfigFlags(ConfigFlags.FullscreenMode);
         }
 
-        if (Window.Resizable)
+        if (windowConfig.Resizable)
         {
             Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
         }
 
-        if (Window.Undecorated)
+        if (windowConfig.Undecorated)
         {
             Raylib.SetConfigFlags(ConfigFlags.UndecoratedWindow);
         }
 
-        if (Window.Hidden)
+        if (windowConfig.Hidden)
         {
             Raylib.SetConfigFlags(ConfigFlags.HiddenWindow);
         }
 
-        if (Window.Minimized)
+        if (windowConfig.Minimized)
         {
             Raylib.SetConfigFlags(ConfigFlags.MinimizedWindow);
         }
 
-        if (Window.Maximized)
+        if (windowConfig.Maximized)
         {
             Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
         }
 
-        if (!Window.Focused)
+        if (!windowConfig.Focused)
         {
             Raylib.SetConfigFlags(ConfigFlags.UnfocusedWindow);
         }
 
-        if (Window.TopMost)
+        if (windowConfig.TopMost)
         {
             Raylib.SetConfigFlags(ConfigFlags.TopmostWindow);
         }
 
-        if (Window.AlwaysRun)
+        if (windowConfig.AlwaysRun)
         {
             Raylib.SetConfigFlags(ConfigFlags.AlwaysRunWindow);
         }
 
-        if (Window.VSync)
+        if (windowConfig.VSync)
         {
             Raylib.SetConfigFlags(ConfigFlags.VSyncHint);
         }
 
-        if (Window.HighDPI)
+        if (windowConfig.HighDPI)
         {
             Raylib.SetConfigFlags(ConfigFlags.HighDpiWindow);
         }
 
-        if (Window.Transparent)
+        if (windowConfig.Transparent)
         {
             Raylib.SetConfigFlags(ConfigFlags.TransparentWindow);
         }
 
-        if (Window.Msaa4xHint)
+        if (windowConfig.Msaa4xHint)
         {
             Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
         }
@@ -315,22 +317,46 @@ public static class Application
             Raylib.EnableCursor();
         }
 
-        Raylib.InitWindow(Window.Size.X, Window.Size.Y, Window.Title);
-        Raylib.SetWindowPosition(Window.Position.X, Window.Position.Y);
-        Raylib.SetWindowMonitor(Window.Monitor);
-        Raylib.SetWindowOpacity(Window.Opacity);
+        Raylib.InitWindow(windowConfig.Size.X, windowConfig.Size.Y, windowConfig.Title);
 
-        if (Window.Resizable)
+        if (windowConfig.MinSize is Vector2i minSize && windowConfig.Resizable)
         {
-            if (Window.MinSize is Vector2i minSizeVec2i)
-            {
-                Raylib.SetWindowMinSize(minSizeVec2i.X, minSizeVec2i.Y);
-            }
+            Raylib.SetWindowMinSize(minSize.X, minSize.Y);
+        }
+        else if(!windowConfig.Resizable && windowConfig.MinSize != null)
+        {
+            throw new Exception("Error: Cannot set window min size because window is not resizable");
         }
 
-        if (Window.Icon != null)
+        if (windowConfig.MaxSize is Vector2i maxSize && windowConfig.Resizable)
         {
-            Raylib.SetWindowIcon((Image)Window.Icon);
+            Raylib.SetWindowMaxSize(maxSize.X, maxSize.Y);
+        }
+        else if (!windowConfig.Resizable && windowConfig.MinSize != null)
+        {
+            throw new Exception("Error: Cannot set window max size because window is not resizable");
+        }
+
+        if (windowConfig.Position is Vector2i position)
+        {
+            Raylib.SetWindowPosition(position.X, position.Y);
+        }
+        else
+        {
+            Raylib.SetWindowPosition(Screen.Width / 2, Screen.Height / 2);
+        }
+
+        if (windowConfig.Icon is Image icon)
+        {
+            Raylib.SetWindowIcon(icon);
+        }
+
+        Raylib.SetWindowMonitor(windowConfig.Monitor);
+        Raylib.SetWindowOpacity(windowConfig.Opacity);
+
+        if (SceneManager.ActiveScene == null)
+        {
+            throw new Exception("Error: Scene manager doesn't have active scene");
         }
 
         SceneManager.ActiveScene.Load();
@@ -346,5 +372,4 @@ public static class Application
         SceneManager.ActiveScene.DisposeInternal();
         Raylib.CloseWindow();
     }
-
 }

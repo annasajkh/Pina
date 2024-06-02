@@ -11,6 +11,34 @@ public struct Vector2i : IEquatable<Vector2i>, IFormattable
     public int X;
     public int Y;
 
+    /// <summary>Returns a vector whose 2 elements are equal to zero.</summary>
+    /// <value>A vector whose two elements are equal to zero (that is, it returns the vector <c>(0,0)</c>.</value>
+    public static Vector2i Zero
+    {
+        get => default;
+    }
+
+    /// <summary>Gets a vector whose 2 elements are equal to one.</summary>
+    /// <value>A vector whose two elements are equal to one (that is, it returns the vector <c>(1,1)</c>.</value>
+    public static Vector2i One
+    {
+        get => new Vector2i(1, 0);
+    }
+
+    /// <summary>Gets the vector (1,0).</summary>
+    /// <value>The vector <c>(1,0)</c>.</value>
+    public static Vector2i UnitX
+    {
+        get => new Vector2i(1, 0);
+    }
+
+    /// <summary>Gets the vector (0,1).</summary>
+    /// <value>The vector <c>(0,1)</c>.</value>
+    public static Vector2i UnitY
+    {
+        get => new Vector2i(0, 1);
+    }
+
     public Vector2i(int x, int y)
     {
         X = x;
