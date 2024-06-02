@@ -2,24 +2,21 @@
 
 namespace Pina.Scripts.Abstracts;
 
-public abstract class Scene
+public abstract class Scene : IDisposable
 {
-    public ResourceManager ResourceManager { get; } = new ResourceManager();
-
     public abstract void Load();
     public abstract void Init();
     public abstract void GetInput();
     public abstract void Update(float delta);
     public abstract void Draw();
 
-    public virtual void Unload()
+    public virtual void Dispose()
     {
         Console.WriteLine($"Scene: {GetType().Name} is unloaded");
     }
 
-    public void UnloadInternal()
+    public void DisposeInternal()
     {
-        Unload();
-        ResourceManager.UnloadAll();
+        Dispose();
     }
 }

@@ -2,7 +2,7 @@
 using Pina.Scripts.Core;
 using Raylib_cs;
 
-namespace Demo;
+namespace Demo.Scripts.Scenes;
 
 internal class MainMenu : Scene
 {
@@ -13,7 +13,7 @@ internal class MainMenu : Scene
 
     public override void Init()
     {
-        
+
     }
 
     public override void GetInput()

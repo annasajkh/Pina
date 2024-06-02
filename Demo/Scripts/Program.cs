@@ -1,19 +1,19 @@
-﻿using Pina.Scripts.Core;
+﻿using Demo.Scripts.Scenes;
+using Pina.Scripts.Core;
 using Pina.Scripts.Managers;
 
-namespace Demo;
+namespace Demo.Scripts;
 
 internal static class Program
 {
     static void Main()
     {
-        Window.Title = "Demo";
+        Window.Title = "Cat Shooter";
 
         var sceneManager = new SceneManager("MainMenu", new MainMenu());
-        var resourceManager = new ResourceManager();
 
         sceneManager.AddScene("World", new World());
 
-        Application.Run(sceneManager, resourceManager);
+        Application.Run(sceneManager);
     }
 }

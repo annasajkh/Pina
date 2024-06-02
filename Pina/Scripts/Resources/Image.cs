@@ -1,28 +1,30 @@
 ﻿using Raylib_cs;
 using System.Numerics;
+using RaylibImage = Raylib_cs.Image;
+using RaylibTexture = Raylib_cs.Texture2D;
 
 namespace Pina.Scripts.Resources;
 
-public sealed class ImageResource : Resource
+public sealed class Image : Resource
 {
-    private Image image;
-    public Image Image 
-    {
-        get
-        {
-            return image;
-        }
-        private set
-        {
-            image = value;
-        }
-    }
+    public RaylibImage raylibImage;
 
     public override bool Ready
     {
         get
         {
-            return Raylib.IsImageReady(image);
+            return Raylib.IsImageReady(raylibImage);
+        }
+    }
+
+    /// <summary>
+    /// Get the source rectangle
+    /// </summary>
+    public Rectangle SourceRectangle
+    {
+        get
+        {
+            return new Rectangle(0, 0, raylibImage.Width, raylibImage.Height);
         }
     }
 
@@ -30,16 +32,13 @@ public sealed class ImageResource : Resource
     /// Load image from file into CPU memory (RAM)
     /// </summary>
     /// <param name="fileName">The file name of the image</param>
-    public ImageResource Load(string fileName)
+    public static Image Load(string fileName)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImage(fileName);
+        image.raylibImage = Raylib.LoadImage(fileName);
 
-        return this;
+        return image;
     }
 
     /// <summary>
@@ -50,16 +49,13 @@ public sealed class ImageResource : Resource
     /// <param name="height">The height of the image</param>
     /// <param name="format">The format of the image</param>
     /// <param name="headerSize">The header size of the image</param>
-    public ImageResource LoadRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
+    public static Image LoadRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageRaw(fileName, width, height, format, headerSize);
+        image.raylibImage = Raylib.LoadImageRaw(fileName, width, height, format, headerSize);
 
-        return this;
+        return image;
     }
 
     /// <summary>
@@ -68,16 +64,13 @@ public sealed class ImageResource : Resource
     /// <param name="fileName">The file name of the image</param>
     /// <param name="width">The width of the image</param>
     /// <param name="height">The height of the image</param>
-    public ImageResource LoadSvg(string fileName, int width, int height)
+    public static Image LoadSvg(string fileName, int width, int height)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageSvg(fileName, width, height);
+        image.raylibImage = Raylib.LoadImageSvg(fileName, width, height);
 
-        return this;
+        return image;
     }
 
     /// <summary>
@@ -85,16 +78,13 @@ public sealed class ImageResource : Resource
     /// </summary>
     /// <param name="fileName">The file name of the image</param>
     /// <param name="frames">The out frames</param>
-    public ImageResource LoadImageAnim(string fileName, out int frames)
+    public static Image LoadImageAnim(string fileName, out int frames)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageAnim(fileName, out frames);
+        image.raylibImage = Raylib.LoadImageAnim(fileName, out frames);
 
-        return this;
+        return image;
     }
 
     /// <summary>
@@ -102,47 +92,38 @@ public sealed class ImageResource : Resource
     /// </summary>
     /// <param name="fileType">The image file type</param>
     /// <param name="fileData">The image file data</param>
-    public ImageResource LoadFromMemory(string fileType, byte[] fileData)
+    public static Image LoadFromMemory(string fileType, byte[] fileData)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageFromMemory(fileType, fileData);
+        image.raylibImage = Raylib.LoadImageFromMemory(fileType, fileData);
 
-        return this;
+        return image;
     }
 
     /// <summary>
     /// Load image from GPU texture data
     /// </summary>
     /// <param name="texture">The texture</param>
-    public ImageResource LoadFromTexture(Texture2D texture)
+    public static Image LoadFromTexture(RaylibTexture raylibTexture)
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageFromTexture(texture);
+        image.raylibImage = Raylib.LoadImageFromTexture(raylibTexture);
 
-        return this;
+        return image;
     }
 
     /// <summary>
     /// Load image from screen buffer (screenshot)
     /// </summary>
-    public ImageResource LoadFromScreen()
+    public static Image LoadFromScreen()
     {
-        if (Ready)
-        {
-            Raylib.UnloadImage(image);
-        }
+        Image image = new Image();
 
-        image = Raylib.LoadImageFromScreen();
+        image.raylibImage = Raylib.LoadImageFromScreen();
 
-        return this;
+        return image;
     }
 
     /// <summary>
@@ -156,7 +137,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        if (!Raylib.ExportImage(image, fileName))
+        if (!Raylib.ExportImage(raylibImage, fileName))
         {
             throw new Exception("Error: Cannot export the image!");
         }
@@ -175,7 +156,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        memoryBuffer = Raylib.ExportImageToMemory(image, fileType, fileSize);
+        memoryBuffer = Raylib.ExportImageToMemory(raylibImage, fileType, fileSize);
     }
 
     /// <summary>
@@ -189,7 +170,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        if (!Raylib.ExportImageAsCode(image, fileName))
+        if (!Raylib.ExportImageAsCode(raylibImage, fileName))
         {
             throw new Exception("Error: Cannot export the image!");
         }
@@ -206,7 +187,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageFormat(ref image, newFormat);
+        Raylib.ImageFormat(ref raylibImage, newFormat);
     }
 
     /// <summary>
@@ -220,7 +201,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageToPOT(ref image, fill);
+        Raylib.ImageToPOT(ref raylibImage, fill);
     }
 
     /// <summary>
@@ -234,7 +215,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageCrop(ref image, crop);
+        Raylib.ImageCrop(ref raylibImage, crop);
     }
 
     /// <summary>
@@ -248,7 +229,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageAlphaCrop(ref image, threshold);
+        Raylib.ImageAlphaCrop(ref raylibImage, threshold);
     }
 
     /// <summary>
@@ -263,14 +244,14 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageAlphaClear(ref image, color, threshold);
+        Raylib.ImageAlphaClear(ref raylibImage, color, threshold);
     }
 
     /// <summary>
     /// Apply alpha mask to image
     /// </summary>
     /// <param name="alphaMask">The alpha mask image</param>
-    public void AlphaMask(Image alphaMask)
+    public void AlphaMask(RaylibImage alphaMask)
     {
         if (!Ready)
         {
@@ -278,7 +259,7 @@ public sealed class ImageResource : Resource
         }
         
 
-        Raylib.ImageAlphaMask(ref image, alphaMask);
+        Raylib.ImageAlphaMask(ref raylibImage, alphaMask);
     }
 
     /// <summary>
@@ -291,7 +272,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageAlphaPremultiply(ref image);
+        Raylib.ImageAlphaPremultiply(ref raylibImage);
     }
 
     /// <summary>
@@ -305,7 +286,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageBlurGaussian(ref image, blurSize);
+        Raylib.ImageBlurGaussian(ref raylibImage, blurSize);
     }
 
     /// <summary>
@@ -320,7 +301,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageResize(ref image, newWidth, newHeight);
+        Raylib.ImageResize(ref raylibImage, newWidth, newHeight);
     }
 
     /// <summary>
@@ -335,7 +316,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageResizeNN(ref image, newWidth, newHeight);
+        Raylib.ImageResizeNN(ref raylibImage, newWidth, newHeight);
     }
 
     /// <summary>
@@ -353,7 +334,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageResizeCanvas(ref image, newWidth, newHeight, offsetX, offsetY, fill);
+        Raylib.ImageResizeCanvas(ref raylibImage, newWidth, newHeight, offsetX, offsetY, fill);
     }
 
     /// <summary>
@@ -366,7 +347,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageMipmaps(ref image);
+        Raylib.ImageMipmaps(ref raylibImage);
     }
 
     /// <summary>
@@ -383,7 +364,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDither(ref image, rBpp, gBpp, bBpp, aBpp);
+        Raylib.ImageDither(ref raylibImage, rBpp, gBpp, bBpp, aBpp);
     }
 
     /// <summary>
@@ -396,7 +377,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageFlipVertical(ref image);
+        Raylib.ImageFlipVertical(ref raylibImage);
     }
 
     /// <summary>
@@ -409,7 +390,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageFlipHorizontal(ref image);
+        Raylib.ImageFlipHorizontal(ref raylibImage);
     }
 
 
@@ -439,7 +420,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageRotateCW(ref image);
+        Raylib.ImageRotateCW(ref raylibImage);
     }
 
     /// <summary>
@@ -452,7 +433,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageRotateCCW(ref image);
+        Raylib.ImageRotateCCW(ref raylibImage);
     }
 
     /// <summary>
@@ -466,7 +447,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorTint(ref image, color);
+        Raylib.ImageColorTint(ref raylibImage, color);
     }
 
     /// <summary>
@@ -479,7 +460,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorInvert(ref image);
+        Raylib.ImageColorInvert(ref raylibImage);
     }
 
     /// <summary>
@@ -492,7 +473,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorGrayscale(ref image);
+        Raylib.ImageColorGrayscale(ref raylibImage);
     }
 
     /// <summary>
@@ -506,7 +487,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorContrast(ref image, contrast);
+        Raylib.ImageColorContrast(ref raylibImage, contrast);
     }
 
     /// <summary>
@@ -520,7 +501,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorBrightness(ref image, brightness);
+        Raylib.ImageColorBrightness(ref raylibImage, brightness);
     }
 
     /// <summary>
@@ -535,7 +516,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageColorReplace(ref image, color, replace);
+        Raylib.ImageColorReplace(ref raylibImage, color, replace);
     }
 
     /// <summary>
@@ -549,7 +530,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageClearBackground(ref image, color);
+        Raylib.ImageClearBackground(ref raylibImage, color);
     }
 
     /// <summary>
@@ -565,7 +546,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawPixel(ref image, posX, posY, color);
+        Raylib.ImageDrawPixel(ref raylibImage, posX, posY, color);
     }
 
     /// <summary>
@@ -580,7 +561,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawPixelV(ref image, position, color);
+        Raylib.ImageDrawPixelV(ref raylibImage, position, color);
     }
 
     /// <summary>
@@ -598,7 +579,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawLine(ref image, startPosX, startPosY, endPosX, endPosY, color);
+        Raylib.ImageDrawLine(ref raylibImage, startPosX, startPosY, endPosX, endPosY, color);
     }
 
     /// <summary>
@@ -614,7 +595,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawLineV(ref image, start, end, color);
+        Raylib.ImageDrawLineV(ref raylibImage, start, end, color);
     }
 
     /// <summary>
@@ -631,7 +612,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawCircle(ref image, centerX, centerY, radius, color);
+        Raylib.ImageDrawCircle(ref raylibImage, centerX, centerY, radius, color);
     }
 
     /// <summary>
@@ -647,7 +628,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawCircleV(ref image, center, radius, color);
+        Raylib.ImageDrawCircleV(ref raylibImage, center, radius, color);
     }
 
     //Raylib cs doesn't have overload for these as non pointer bruh need to implement myself i guess
@@ -690,7 +671,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawRectangle(ref image, posX, posY, width, height, color);
+        Raylib.ImageDrawRectangle(ref raylibImage, posX, posY, width, height, color);
     }
 
     /// <summary>
@@ -706,7 +687,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawRectangleV(ref image, position, size, color);
+        Raylib.ImageDrawRectangleV(ref raylibImage, position, size, color);
     }
 
     /// <summary>
@@ -721,7 +702,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawRectangleRec(ref image, rec, color);
+        Raylib.ImageDrawRectangleRec(ref raylibImage, rec, color);
     }
 
     /// <summary>
@@ -737,7 +718,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawRectangleLines(ref image, rec, thick, color);
+        Raylib.ImageDrawRectangleLines(ref raylibImage, rec, thick, color);
     }
 
     /// <summary>
@@ -747,14 +728,14 @@ public sealed class ImageResource : Resource
     /// <param name="srcRec">The source rectangle</param>
     /// <param name="dstRec">The destination rectangle</param>
     /// <param name="tint">The tint color</param>
-    public void Draw(Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
+    public void Draw(RaylibImage src, Rectangle srcRec, Rectangle dstRec, Color tint)
     {
         if (!Ready)
         {
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDraw(ref image, src, srcRec, dstRec, tint);
+        Raylib.ImageDraw(ref raylibImage, src, srcRec, dstRec, tint);
     }
 
     /// <summary>
@@ -772,7 +753,7 @@ public sealed class ImageResource : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageDrawText(ref image, text, posX, posY, fontSize, color);
+        Raylib.ImageDrawText(ref raylibImage, text, posX, posY, fontSize, color);
     }
 
     //Raylib cs doesn't have overload for these as non pointer bruh need to implement myself i guess
@@ -794,15 +775,20 @@ public sealed class ImageResource : Resource
     /// <summary>
     /// Unload image from CPU memory (RAM)
     /// </summary>
-    public override void Unload()
+    protected override void Unload()
     {
         if (!Ready)
         {
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.UnloadImage(image);
+        Raylib.UnloadImage(raylibImage);
 
         base.Unload();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        Unload();
     }
 }

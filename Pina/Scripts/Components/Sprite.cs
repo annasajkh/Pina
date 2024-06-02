@@ -18,7 +18,7 @@ public sealed class Sprite : IDrawable
     public uint FrameIndex { get; set; } = 0;
     public Vector2 Origin { get; set; }
 
-    public TextureResource TextureResource { get; }
+    public Resources.Texture2D TextureResource { get; }
     public TextureFilter TextureFilter { get; set; } = TextureFilter.Point;
 
     public uint FrameCount
@@ -44,7 +44,7 @@ public sealed class Sprite : IDrawable
 
     private Rectangle sourceRectangle;
 
-    public Sprite(TextureResource textureResource, Vector2 position = new Vector2(), uint rows = 1, uint columns = 1)
+    public Sprite(Resources.Texture2D textureResource, Vector2 position = new Vector2(), uint rows = 1, uint columns = 1)
     {
         Position = position;
         Rotation = 0;
@@ -53,7 +53,7 @@ public sealed class Sprite : IDrawable
         Rows = rows;
         Columns = columns;
         TextureResource = textureResource;
-        sourceRectangle = new Rectangle(0, 0, TextureResource.Texture2D!.Width / columns, TextureResource.Texture2D!.Height / rows);
+        sourceRectangle = new Rectangle(0, 0, TextureResource.raylibTexture2D!.Width / columns, TextureResource.raylibTexture2D!.Height / rows);
 
         Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
     }
@@ -77,7 +77,7 @@ public sealed class Sprite : IDrawable
         sourceRectangle.X = sourceRectangle.Width * (FrameIndex % Columns);
         sourceRectangle.Y = sourceRectangle.Height * (FrameIndex / Columns);
 
-        Graphics.DrawTexturePro(TextureResource.Texture2D!, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
+        Graphics.DrawTexturePro(TextureResource.raylibTexture2D!, sourceRectangle, new Rectangle(Position.X, Position.Y, Size.X, Size.Y), Origin, Rotation, Color);
     }
 
     public void DrawBoundingRectangle()

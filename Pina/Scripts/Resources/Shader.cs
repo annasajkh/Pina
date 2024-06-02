@@ -1,22 +1,12 @@
 ﻿using Raylib_cs;
 using System.Numerics;
-
+using RaylibShader = Raylib_cs.Shader;
+using RaylibTexture = Raylib_cs.Texture2D;
 namespace Pina.Scripts.Resources;
 
-public sealed class ShaderResource : Resource
+public sealed class Shader : Resource
 {
-    private Shader shader;
-    public Shader Shader
-    {
-        get
-        {
-            return shader;
-        }
-        private set
-        {
-            shader = value;
-        }
-    }
+    public RaylibShader raylibShader;
 
     /// <summary>
     /// if a shader is ready
@@ -25,7 +15,7 @@ public sealed class ShaderResource : Resource
     {
         get
         {
-            return Raylib.IsShaderReady(shader);
+            return Raylib.IsShaderReady(raylibShader);
         }
     }
 
@@ -34,16 +24,13 @@ public sealed class ShaderResource : Resource
     /// </summary>
     /// <param name="vsFileName">The vertex shader file name</param>
     /// <param name="fsFileName">The fragment shader file name</param>
-    public ShaderResource Load(string vsFileName, string fsFileName)
+    public static Shader Load(string vsFileName, string fsFileName)
     {
-        if (Ready)
-        {
-            Raylib.UnloadShader(shader);
-        }
+        Shader shader = new Shader();
 
-        shader = Raylib.LoadShader(vsFileName, fsFileName);
+        shader.raylibShader = Raylib.LoadShader(vsFileName, fsFileName);
 
-        return this;
+        return shader;
     }
 
     /// <summary>
@@ -51,16 +38,13 @@ public sealed class ShaderResource : Resource
     /// </summary>
     /// <param name="vertexShaderCode">The vertex shader code</param>
     /// <param name="fragmentShaderCode">The fragment shader code</param>
-    public ShaderResource LoadFromMemory(string vertexShaderCode, string fragmentShaderCode)
+    public static Shader LoadFromMemory(string vertexShaderCode, string fragmentShaderCode)
     {
-        if (Ready)
-        {
-            Raylib.UnloadShader(shader);
-        }
+        Shader shader = new Shader();
 
-        shader = Raylib.LoadShaderFromMemory(vertexShaderCode, fragmentShaderCode);
+        shader.raylibShader = Raylib.LoadShaderFromMemory(vertexShaderCode, fragmentShaderCode);
 
-        return this;
+        return shader;
     }
 
     /// <summary>
@@ -75,7 +59,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        return Raylib.GetShaderLocation(shader, uniformName);
+        return Raylib.GetShaderLocation(raylibShader, uniformName);
     }
 
     /// <summary>
@@ -90,7 +74,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        return Raylib.GetShaderLocationAttrib(shader, attributeName);
+        return Raylib.GetShaderLocationAttrib(raylibShader, attributeName);
     }
 
     // -------------Need to investigate how these work lol----------------
@@ -105,7 +89,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValue(shader, locIndex, values, uniformType);
+        Raylib.SetShaderValue(raylibShader, locIndex, values, uniformType);
     }
 
     /// <summary>
@@ -118,7 +102,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValue(shader, locIndex, values, uniformType);
+        Raylib.SetShaderValue(raylibShader, locIndex, values, uniformType);
     }
 
     /// <summary>
@@ -131,7 +115,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValue(shader, locIndex, values, uniformType);
+        Raylib.SetShaderValue(raylibShader, locIndex, values, uniformType);
     }
 
     /// <summary>
@@ -144,7 +128,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValue(shader, locIndex, values, uniformType);
+        Raylib.SetShaderValue(raylibShader, locIndex, values, uniformType);
     }
 
 
@@ -158,7 +142,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValue(shader, locIndex, values, uniformType);
+        Raylib.SetShaderValue(raylibShader, locIndex, values, uniformType);
     }
 
     /// <summary>
@@ -171,7 +155,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueV(shader, locIndex, values, uniformType, count);
+        Raylib.SetShaderValueV(raylibShader, locIndex, values, uniformType, count);
     }
 
     /// <summary>
@@ -184,7 +168,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueV(shader, locIndex, values, uniformType, count);
+        Raylib.SetShaderValueV(raylibShader, locIndex, values, uniformType, count);
     }
 
     /// <summary>
@@ -197,7 +181,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueV(shader, locIndex, values, uniformType, count);
+        Raylib.SetShaderValueV(raylibShader, locIndex, values, uniformType, count);
     }
 
     /// <summary>
@@ -210,7 +194,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueV(shader, locIndex, values, uniformType, count);
+        Raylib.SetShaderValueV(raylibShader, locIndex, values, uniformType, count);
     }
 
     /// <summary>
@@ -223,7 +207,7 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueV(shader, locIndex, values, uniformType, count);
+        Raylib.SetShaderValueV(raylibShader, locIndex, values, uniformType, count);
     }
 
     //--------------------------------------------------------------------
@@ -238,34 +222,39 @@ public sealed class ShaderResource : Resource
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueMatrix(shader, locIndex, matrix);
+        Raylib.SetShaderValueMatrix(raylibShader, locIndex, matrix);
     }
 
     /// <summary>
     /// Set shader uniform value for texture (sampler2d)
     /// </summary>
-    public void SetValueTexture(int locIndex, Texture2D texture)
+    public void SetValueTexture(int locIndex, RaylibTexture texture)
     {
         if (!Ready)
         {
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.SetShaderValueTexture(shader, locIndex, texture);
+        Raylib.SetShaderValueTexture(raylibShader, locIndex, texture);
     }
 
     /// <summary>
     /// Unload shader from GPU memory (VRAM)
     /// </summary>
-    public override void Unload()
+    protected override void Unload()
     {
         if (!Ready)
         {
             throw new Exception("Error: Shader is not loaded yet");
         }
 
-        Raylib.UnloadShader(shader);
+        Raylib.UnloadShader(raylibShader);
 
         base.Unload();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        Unload();
     }
 }
