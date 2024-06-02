@@ -1,6 +1,8 @@
 ﻿using Pina.Scripts.Core.Types;
+using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
+using Image = Pina.Scripts.Resources.Image;
 
 namespace Pina.Scripts.Core;
 
@@ -139,8 +141,8 @@ public static class Window
         {
             if (icon != null && value != null)
             {
-                Raylib.UnloadImage((Image)icon);
-                Raylib.SetWindowIcon((Image)value);
+                icon.Dispose();
+                Raylib.SetWindowIcon(value.raylibImage);
             }
             icon = value;
         }

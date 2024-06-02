@@ -2,6 +2,7 @@
 using Pina.Scripts.Core;
 using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
+using Pina.Scripts.Resources;
 using System.Security.Principal;
 
 namespace Demo.Scripts;
@@ -10,7 +11,7 @@ internal static class Program
 {
     static void Main()
     {
-        WindowConfig windowConfig = new WindowConfig(title: "Cat Shooter", size: new(960, 540));
+        WindowConfig windowConfig = new WindowConfig(title: "Cat Shooter", size: new Vector2i(960, 540));
 
         var sceneManager = new SceneManager();
 

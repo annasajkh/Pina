@@ -1,7 +1,7 @@
 ﻿using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
 using Raylib_cs;
-using System.Numerics;
+using Image = Pina.Scripts.Resources.Image;
 
 namespace Pina.Scripts.Core;
 
@@ -240,16 +240,6 @@ public static class Application
             Raylib.SetConfigFlags(ConfigFlags.HiddenWindow);
         }
 
-        if (windowConfig.Minimized)
-        {
-            Raylib.SetConfigFlags(ConfigFlags.MinimizedWindow);
-        }
-
-        if (windowConfig.Maximized)
-        {
-            Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
-        }
-
         if (!windowConfig.Focused)
         {
             Raylib.SetConfigFlags(ConfigFlags.UnfocusedWindow);
@@ -348,11 +338,29 @@ public static class Application
 
         if (windowConfig.Icon is Image icon)
         {
-            Raylib.SetWindowIcon(icon);
+            Raylib.SetWindowIcon(icon.raylibImage);
         }
 
         Raylib.SetWindowMonitor(windowConfig.Monitor);
         Raylib.SetWindowOpacity(windowConfig.Opacity);
+
+        if (windowConfig.Minimized && windowConfig.Resizable)
+        {
+            Raylib.MinimizeWindow();
+        }
+        else if (windowConfig.Minimized && !windowConfig.Resizable)
+        {
+            throw new Exception("Error: Cannot set window minimized because window is not resizable");
+        }
+
+        if (windowConfig.Maximized && windowConfig.Resizable)
+        {
+            Raylib.MaximizeWindow();
+        }
+        else if (windowConfig.Maximized && !windowConfig.Resizable)
+        {
+            throw new Exception("Error: Cannot set window maximized because window is not resizable");
+        }
 
         if (SceneManager.ActiveScene == null)
         {
