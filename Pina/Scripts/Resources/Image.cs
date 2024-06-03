@@ -1,7 +1,6 @@
 ﻿using Raylib_cs;
 using System.Numerics;
 using RaylibImage = Raylib_cs.Image;
-using RaylibTexture = Raylib_cs.Texture2D;
 
 namespace Pina.Scripts.Resources;
 
@@ -9,7 +8,10 @@ public sealed class Image : Resource
 {
     public RaylibImage raylibImage;
 
-    public override bool Ready
+    /// <summary>
+    /// if a image is ready
+    /// </summary>
+    public bool Ready
     {
         get
         {
@@ -105,11 +107,11 @@ public sealed class Image : Resource
     /// Load image from GPU texture data
     /// </summary>
     /// <param name="texture">The texture</param>
-    public static Image LoadFromTexture(RaylibTexture raylibTexture)
+    public static Image LoadFromTexture(Texture2D texture)
     {
         Image image = new Image();
 
-        image.raylibImage = Raylib.LoadImageFromTexture(raylibTexture);
+        image.raylibImage = Raylib.LoadImageFromTexture(texture.raylibTexture2D);
 
         return image;
     }
@@ -122,6 +124,18 @@ public sealed class Image : Resource
         Image image = new Image();
 
         image.raylibImage = Raylib.LoadImageFromScreen();
+
+        return image;
+    }
+
+    /// <summary>
+    /// Generate image font atlas using chars info
+    /// </summary>
+    public static unsafe Image GenFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod)
+    {
+        Image image = new Image();
+
+        image.raylibImage = Raylib.GenImageFontAtlas(chars, recs, glyphCount, fontSize, padding, packMethod);
 
         return image;
     }

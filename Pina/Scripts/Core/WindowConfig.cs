@@ -2,7 +2,6 @@
 
 using Pina.Scripts.Core.Types;
 using Pina.Scripts.Resources;
-using System.Numerics;
 
 namespace Pina.Scripts.Core;
 

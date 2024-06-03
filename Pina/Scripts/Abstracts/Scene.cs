@@ -1,6 +1,4 @@
-﻿using Pina.Scripts.Managers;
-
-namespace Pina.Scripts.Abstracts;
+﻿namespace Pina.Scripts.Abstracts;
 
 public abstract class Scene : IDisposable
 {

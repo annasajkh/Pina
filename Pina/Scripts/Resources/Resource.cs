@@ -2,8 +2,6 @@
 
 public abstract class Resource : IDisposable
 {
-    public abstract bool Ready { get; }
-
     protected virtual void Unload()
     {
         Console.WriteLine($"Resource: {GetType()} is unloaded");

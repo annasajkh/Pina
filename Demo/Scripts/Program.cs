@@ -2,8 +2,6 @@
 using Pina.Scripts.Core;
 using Pina.Scripts.Core.Types;
 using Pina.Scripts.Managers;
-using Pina.Scripts.Resources;
-using System.Security.Principal;
 
 namespace Demo.Scripts;
 

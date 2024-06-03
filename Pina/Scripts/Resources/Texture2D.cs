@@ -10,7 +10,7 @@ public sealed class Texture2D : Resource
     /// <summary>
     /// determine if the texture is ready
     /// </summary>
-    public override bool Ready
+    public bool Ready
     {
         get
         {

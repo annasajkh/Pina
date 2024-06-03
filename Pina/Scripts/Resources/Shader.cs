@@ -11,7 +11,7 @@ public sealed class Shader : Resource
     /// <summary>
     /// if a shader is ready
     /// </summary>
-    public override bool Ready
+    public bool Ready
     {
         get
         {

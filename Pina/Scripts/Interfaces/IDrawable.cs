@@ -1,5 +1,3 @@
-using Raylib_cs;
-
 namespace Pina.Scripts.Interfaces;
 
 public interface IDrawable

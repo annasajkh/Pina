@@ -1,12 +1,8 @@
 ﻿using Demo.Scripts.Entities;
 using Pina.Scripts.Abstracts;
 using Pina.Scripts.Core;
-using Pina.Scripts.Extensions;
-using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
-using Image = Pina.Scripts.Resources.Image;
-using Texture2D = Pina.Scripts.Resources.Texture2D;
 using Timer = Pina.Scripts.Components.Timer;
 
 namespace Demo.Scripts.Scenes;

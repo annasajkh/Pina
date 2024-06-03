@@ -1,14 +1,7 @@
-﻿using Demo.Scripts.GameObjects;
-using Pina.Scripts.Core;
+﻿using Pina.Scripts.Core;
 using Pina.Scripts.Interfaces;
-using Pina.Scripts.Resources;
 using Raylib_cs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Texture2D = Pina.Scripts.Resources.Texture2D;
 
 namespace Demo.Scripts.Entities;

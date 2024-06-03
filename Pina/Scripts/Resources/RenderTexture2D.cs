@@ -8,7 +8,10 @@ public sealed class RenderTexture2D : Resource
 {
     public RaylibRenderTexture2D raylibRenderTexture2D;
 
-    public override bool Ready
+    /// <summary>
+    /// If RenderTexture2D is ready
+    /// </summary>
+    public bool Ready
     {
         get
         {

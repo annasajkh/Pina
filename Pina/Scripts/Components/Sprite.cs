@@ -1,6 +1,5 @@
 ﻿using Pina.Scripts.Core;
 using Pina.Scripts.Interfaces;
-using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
 

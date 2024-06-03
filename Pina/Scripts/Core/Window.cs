@@ -1,5 +1,4 @@
 ﻿using Pina.Scripts.Core.Types;
-using Pina.Scripts.Resources;
 using Raylib_cs;
 using System.Numerics;
 using Image = Pina.Scripts.Resources.Image;
