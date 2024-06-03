@@ -1272,5 +1272,4 @@ public static class Graphics
     {
         Raylib.DrawMeshInstanced(mesh, material, transforms, instances);
     }
-
 }
