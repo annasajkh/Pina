@@ -308,6 +308,7 @@ public static class Application
         }
 
         Raylib.InitWindow(windowConfig.Size.X, windowConfig.Size.Y, windowConfig.Title);
+        Raylib.InitAudioDevice();
 
         if (windowConfig.MinSize is Vector2i minSize && windowConfig.Resizable)
         {
@@ -378,6 +379,7 @@ public static class Application
         }
 
         SceneManager.ActiveScene.DisposeInternal();
+        Raylib.CloseAudioDevice();
         Raylib.CloseWindow();
     }
 }

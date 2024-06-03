@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using System.Numerics;
+using RaylibMaterial = Raylib_cs.Material;
 
 namespace Pina.Scripts.Core;
 
@@ -1256,7 +1257,7 @@ public static class Graphics
     /// <param name="mesh">The mesh to draw</param>
     /// <param name="material">The material of the mesh</param>
     /// <param name="transform">The transformation matrix</param>
-    public static void DrawMesh(Mesh mesh, Material material, Matrix4x4 transform)
+    public static void DrawMesh(Mesh mesh, RaylibMaterial material, Matrix4x4 transform)
     {
         Raylib.DrawMesh(mesh, material, transform);
     }
@@ -1268,7 +1269,7 @@ public static class Graphics
     /// <param name="material">The material of the mesh</param>
     /// <param name="transforms">The array of transformation matrices</param>
     /// <param name="instances">The number of instances to draw</param>
-    public unsafe static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4* transforms, int instances)
+    public unsafe static void DrawMeshInstanced(Mesh mesh, RaylibMaterial material, Matrix4x4* transforms, int instances)
     {
         Raylib.DrawMeshInstanced(mesh, material, transforms, instances);
     }
