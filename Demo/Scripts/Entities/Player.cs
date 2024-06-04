@@ -12,7 +12,7 @@ public class Player : Entity, IDrawable, IDisposable
 
     public Player(Vector2 position, float rotation) : base(position, rotation)
     {
-        catTexture = Texture2D.Load("Assets\\Sprites\\cat.png");
+        catTexture = Texture2D.Load(Path.Combine("Assets", "Sprites", "cat.png"));
         catTexture.raylibTexture2D.Width = 64;
         catTexture.raylibTexture2D.Height = 64;
     }
