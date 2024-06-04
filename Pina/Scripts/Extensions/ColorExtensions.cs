@@ -10,7 +10,7 @@ public static class ColorExtensions
     /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
     /// </summary>
     /// <param name="alpha">The alpha value</param>
-    public static void Fade(this ref Color color, float alpha)
+    public static void Fade(this Color color, float alpha)
     {
         color = Raylib.Fade(new Color(color.R, color.G, color.B, color.A), alpha);
     }
@@ -19,7 +19,7 @@ public static class ColorExtensions
     /// Get color multiplied with another color
     /// </summary>
     /// <param name="tint">The tint color (aka color that will be multiplied by)</param>
-    public static void Tint(this ref Color color, Color tint)
+    public static void Tint(this Color color, Color tint)
     {
         color = Raylib.ColorTint(new Color(color.R, color.G, color.B, color.A), tint);
     }
@@ -28,7 +28,7 @@ public static class ColorExtensions
     /// Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
     /// </summary>
     /// <param name="factor">The brightness factor</param>
-    public static void Brightness(this ref Color color, float factor)
+    public static void Brightness(this Color color, float factor)
     {
         color = Raylib.ColorBrightness(new Color(color.R, color.G, color.B, color.A), factor);
     }
@@ -37,7 +37,7 @@ public static class ColorExtensions
     /// Get color with contrast correction, contrast values between -1.0f and 1.0f
     /// </summary>
     /// <param name="contrast">The contrast</param>
-    public static void Contrast(this ref Color color, float contrast)
+    public static void Contrast(this Color color, float contrast)
     {
         color = Raylib.ColorContrast(new Color(color.R, color.G, color.B, color.A), contrast);
     }
@@ -46,7 +46,7 @@ public static class ColorExtensions
     /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
     /// </summary>
     /// <param name="alpha">The alpha</param>
-    public static void Alpha(this ref Color color, float alpha)
+    public static void Alpha(this Color color, float alpha)
     {
         color = Raylib.ColorAlpha(new Color(color.R, color.G, color.B, color.A), alpha);
     }
@@ -56,7 +56,7 @@ public static class ColorExtensions
     /// </summary>
     /// <param name="color">The color</param>
     /// <returns>The integer representation of the color</returns>
-    public static int ToInt(this ref Color color)
+    public static int ToInt(this Color color)
     {
         return Raylib.ColorToInt(color);
     }
@@ -66,7 +66,7 @@ public static class ColorExtensions
     /// </summary>
     /// <param name="color">The color</param>
     /// <returns>The normalized vector4 representation of the color</returns>
-    public static Vector4 Normalize(this ref Color color)
+    public static Vector4 Normalize(this Color color)
     {
         return Raylib.ColorNormalize(color);
     }
@@ -76,7 +76,7 @@ public static class ColorExtensions
     /// </summary>
     /// <param name="color">The color</param>
     /// <returns>The HSV result as vector3</returns>
-    public static Vector3 ToHSV(this ref Color color)
+    public static Vector3 ToHSV(this Color color)
     {
         return Raylib.ColorToHSV(color);
     }

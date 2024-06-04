@@ -43,7 +43,9 @@ public class World : Scene
     {
         Graphics.BeginDrawing();
         Graphics.ClearBackground(Color.Black);
+
         player.Draw();
+        
         Graphics.EndDrawing();
     }
 

@@ -145,4 +145,76 @@ public static class MathHelper
     {
         return Raylib.GetSplinePointBezierCubic(p1, c2, c3, p4, t);
     }
- }
+
+    /// <summary>
+    /// Orthonormalize provided vectors Makes vectors normalized and orthogonal to each other Gram-Schmidt function implementation
+    /// </summary>
+    public static unsafe void Vector3OrthoNormalize(Vector3* vector1, Vector3* vector2)
+    {
+        Raymath.Vector3OrthoNormalize(vector1, vector2);
+    }
+
+    /// <summary>
+    /// Get translation matrix
+    /// </summary>
+    public static Matrix4x4 MatrixTranslate(float x, float y, float z)
+    {
+        return Raymath.MatrixTranslate(x, y, z);
+    }
+
+    /// <summary>
+    /// Create rotation matrix from axis and angle NOTE: Angle should be provided in radians
+    /// </summary>
+    public static Matrix4x4 MatrixRotate(Vector3 axis, float angle)
+    {
+        return Raymath.MatrixRotate(axis, angle);
+    }
+
+    /// <summary>
+    /// Get xyz-rotation matrix NOTE: Angle must be provided in radians
+    /// </summary>
+    public static Matrix4x4 MatrixRotateXYZ(Vector3 angle)
+    {
+        return Raymath.MatrixRotateXYZ(angle);
+    }
+
+    /// <summary>
+    /// Get zyx-rotation matrix NOTE: Angle must be provided in radians
+    /// </summary>
+    public static Matrix4x4 MatrixRotateZYX(Vector3 angle)
+    {
+        return Raymath.MatrixRotateZYX(angle);
+    }
+
+    /// <summary>
+    /// Calculate quaternion based on the rotation from one vector to another
+    /// </summary>
+    public static Quaternion QuaternionFromVector3ToVector3(Vector3 from, Vector3 to)
+    {
+        return Raymath.QuaternionFromVector3ToVector3(from, to);
+    }
+
+    /// <summary>
+    /// Get a quaternion for a given rotation matrix
+    /// </summary>
+    public static Quaternion QuaternionFromMatrix(Matrix4x4 matrix)
+    {
+        return Raymath.QuaternionFromMatrix(matrix);
+    }
+
+    /// <summary>
+    /// Get rotation quaternion for an angle and axis NOTE: Angle must be provided in radians
+    /// </summary>
+    public static Quaternion QuaternionFromAxisAngle(Vector3 axis, float angle)
+    {
+        return Raymath.QuaternionFromAxisAngle(axis, angle);
+    }
+
+    /// <summary>
+    /// Get the quaternion equivalent to Euler angles NOTE: Rotation order is ZYX
+    /// </summary>
+    public static Quaternion QuaternionFromEuler(float pitch, float yaw, float roll)
+    {
+        return Raymath.QuaternionFromEuler(pitch, yaw, roll);
+    }
+}

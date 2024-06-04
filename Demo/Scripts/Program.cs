@@ -9,8 +9,7 @@ internal static class Program
 {
     static void Main()
     {
-        WindowConfig windowConfig = new WindowConfig(title: "Cat Shooter", size: new Vector2i(960, 540));
-
+        var windowConfig = new WindowConfig(title: "Cat Shooter", size: new Vector2i(960, 540));
         var sceneManager = new SceneManager();
 
         sceneManager.AddScene("MainMenu", new MainMenu());

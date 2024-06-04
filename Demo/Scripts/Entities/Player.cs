@@ -3,7 +3,6 @@ using Pina.Scripts.Interfaces;
 using Raylib_cs;
 using System.Numerics;
 using Texture2D = Pina.Scripts.Resources.Texture2D;
-
 namespace Demo.Scripts.Entities;
 
 public class Player : Entity, IDrawable, IDisposable

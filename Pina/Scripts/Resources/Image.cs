@@ -787,6 +787,30 @@ public sealed class Image : Resource
     //-----------------------------------------------------------------------------------------------
 
     /// <summary>
+    /// Create a duplicate image
+    /// </summary>
+    /// <returns>The new copy of the image</returns>
+    public Image Copy()
+    {
+        Image image = new Image();
+        
+        image.raylibImage = Raylib.ImageCopy(raylibImage);
+
+        return image;
+    }
+
+    /// <summary>
+    /// Get the pixel color of an image at a specified position
+    /// </summary>
+    /// <param name="x">X coordinate of the pixel</param>
+    /// <param name="y">Y coordinate of the pixel</param>
+    /// <returns>The color of the pixel at the specified position</returns>
+    public Color GetColor(int x, int y)
+    {
+        return Raylib.GetImageColor(raylibImage, x, y);
+    }
+
+    /// <summary>
     /// Unload image from CPU memory (RAM)
     /// </summary>
     protected override void Unload()
