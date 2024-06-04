@@ -8,7 +8,7 @@ public sealed class Texture2D : Resource
     public RaylibTexture2D raylibTexture2D;
 
     /// <summary>
-    /// determine if the texture is ready
+    /// Determine if the texture is ready
     /// </summary>
     public bool Ready
     {

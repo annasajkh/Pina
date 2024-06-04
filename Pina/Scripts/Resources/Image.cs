@@ -9,7 +9,7 @@ public sealed class Image : Resource
     public RaylibImage raylibImage;
 
     /// <summary>
-    /// if a image is ready
+    /// Determine if the image is ready
     /// </summary>
     public bool Ready
     {

@@ -9,7 +9,7 @@ public sealed class Shader : Resource
     public RaylibShader raylibShader;
 
     /// <summary>
-    /// if a shader is ready
+    /// Determine if the shader is ready
     /// </summary>
     public bool Ready
     {

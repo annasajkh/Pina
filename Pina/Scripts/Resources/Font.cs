@@ -11,7 +11,7 @@ public class Font : Resource
     public RaylibFont raylibFont;
 
     /// <summary>
-    /// if a font is ready
+    /// Determine if the font is ready
     /// </summary>
     public bool Ready
     {

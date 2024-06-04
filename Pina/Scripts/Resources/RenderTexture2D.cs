@@ -9,7 +9,7 @@ public sealed class RenderTexture2D : Resource
     public RaylibRenderTexture2D raylibRenderTexture2D;
 
     /// <summary>
-    /// If RenderTexture2D is ready
+    /// Determine if the render texture 2d is ready
     /// </summary>
     public bool Ready
     {

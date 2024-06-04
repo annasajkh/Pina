@@ -10,7 +10,7 @@ public class Model : Resource
     RaylibModel raylibModel;
 
     /// <summary>
-    /// if a model is ready
+    /// Determine if the model is ready
     /// </summary>
     public bool Ready
     {
@@ -76,7 +76,7 @@ public class Model : Resource
     {
         if (!Ready)
         {
-            throw new Exception("Error: RenderTexture is not loaded yet");
+            throw new Exception("Error: Model is not loaded yet");
         }
 
         Raylib.UnloadModel(raylibModel);
