@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using System.Numerics;
+using System.Text;
 using RaylibImage = Raylib_cs.Image;
 
 namespace Pina.Scripts.Resources;
@@ -419,7 +420,7 @@ public sealed class Image : Resource
             throw new Exception("Error: Image is not loaded yet");
         }
 
-        Raylib.ImageRotate(ref image, degrees);
+        Raylib.ImageRotate(ref raylibImage, degrees);
     }
 
     /// <summary>
@@ -783,9 +784,14 @@ public sealed class Image : Resource
     /// <param name="tint">The tint color</param>
     public unsafe void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
+        byte[] textBytes = Encoding.ASCII.GetBytes(text);
+
         fixed (RaylibImage* imgPtr = &raylibImage)
         {
-            Raylib.ImageDrawTextEx(imgPtr, font, text, position, fontSize, spacing, tint);
+            fixed(byte* textBytesPtr = textBytes)
+            {
+                Raylib.ImageDrawTextEx(imgPtr, font.raylibFont, (sbyte*)textBytesPtr, position, fontSize, spacing, tint);
+            }
         }
     }
 
