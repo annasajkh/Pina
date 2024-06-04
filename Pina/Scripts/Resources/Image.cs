@@ -408,21 +408,19 @@ public sealed class Image : Resource
     }
 
 
-    // --------------------- This Method Leaks Memory Lmao ----------------------------
-    ///// <summary>
-    ///// Rotate image by input angle in degrees (-359 to 359)
-    ///// </summary>
-    ///// <param name="degrees">The angle in degrees</param>
-    //public void Rotate(int degrees)
-    //{
-    //    if (!Ready)
-    //    {
-    //        throw new Exception("Error: Image is not loaded yet");
-    //    }
+    /// <summary>
+    /// Rotate image by input angle in degrees (-359 to 359)
+    /// </summary>
+    /// <param name="degrees">The angle in degrees</param>
+    public void Rotate(int degrees)
+    {
+        if (!Ready)
+        {
+            throw new Exception("Error: Image is not loaded yet");
+        }
 
-    //    Raylib.ImageRotate(ref image, degrees);
-    //}
-    // --------------------------------------------------------------------------------
+        Raylib.ImageRotate(ref image, degrees);
+    }
 
     /// <summary>
     /// Rotate image clockwise 90deg
@@ -645,30 +643,34 @@ public sealed class Image : Resource
         Raylib.ImageDrawCircleV(ref raylibImage, center, radius, color);
     }
 
-    //Raylib cs doesn't have overload for these as non pointer bruh need to implement myself i guess
-    ///// <summary>
-    ///// Draw circle outline within an image
-    ///// </summary>
-    ///// <param name="centerX">The x-coordinate of the center of the circle</param>
-    ///// <param name="centerY">The y-coordinate of the center of the circle</param>
-    ///// <param name="radius">The radius of the circle</param>
-    ///// <param name="color">The color of the circle</param>
-    //public void DrawCircleLines(int centerX, int centerY, int radius, Color color)
-    //{
-    //    Raylib.ImageDrawCircleLines(ref image, centerX, centerY, radius, color);
-    //}
+    /// <summary>
+    /// Draw circle outline within an image
+    /// </summary>
+    /// <param name="centerX">The x-coordinate of the center of the circle</param>
+    /// <param name="centerY">The y-coordinate of the center of the circle</param>
+    /// <param name="radius">The radius of the circle</param>
+    /// <param name="color">The color of the circle</param>
+    public unsafe void DrawCircleLines(int centerX, int centerY, int radius, Color color)
+    {
+        fixed(RaylibImage* imgPtr = &raylibImage)
+        {
+            Raylib.ImageDrawCircleLines(imgPtr, centerX, centerY, radius, color);
+        }
+    }
 
-    ///// <summary>
-    ///// Draw circle outline within an image (Vector version)
-    ///// </summary>
-    ///// <param name="center">The center of the circle</param>
-    ///// <param name="radius">The radius of the circle</param>
-    ///// <param name="color">The color of the circle</param>
-    //public void DrawCircleLinesV(Vector2 center, int radius, Color color)
-    //{
-    //    Raylib.ImageDrawCircleLinesV(ref image, center, radius, color);
-    //}
-    //-----------------------------------------------------------------------------------------------
+    /// <summary>
+    /// Draw circle outline within an image (Vector version)
+    /// </summary>
+    /// <param name="center">The center of the circle</param>
+    /// <param name="radius">The radius of the circle</param>
+    /// <param name="color">The color of the circle</param>
+    public unsafe void DrawCircleLinesV(Vector2 center, int radius, Color color)
+    {
+        fixed (RaylibImage* imgPtr = &raylibImage)
+        {
+            Raylib.ImageDrawCircleLinesV(imgPtr, center, radius, color);
+        }
+    }
 
     /// <summary>
     /// Draw rectangle within an image
@@ -770,21 +772,22 @@ public sealed class Image : Resource
         Raylib.ImageDrawText(ref raylibImage, text, posX, posY, fontSize, color);
     }
 
-    //Raylib cs doesn't have overload for these as non pointer bruh need to implement myself i guess
-    ///// <summary>
-    ///// Draw text (custom sprite font) within an image (destination)
-    ///// </summary>
-    ///// <param name="font">The custom font</param>
-    ///// <param name="text">The text to draw</param>
-    ///// <param name="position">The position of the text</param>
-    ///// <param name="fontSize">The font size</param>
-    ///// <param name="spacing">The spacing between characters</param>
-    ///// <param name="tint">The tint color</param>
-    //public void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
-    //{
-    //    Raylib.ImageDrawTextEx(ref image, font, text, position, fontSize, spacing, tint);
-    //}
-    //-----------------------------------------------------------------------------------------------
+    /// <summary>
+    /// Draw text (custom sprite font) within an image (destination)
+    /// </summary>
+    /// <param name="font">The custom font</param>
+    /// <param name="text">The text to draw</param>
+    /// <param name="position">The position of the text</param>
+    /// <param name="fontSize">The font size</param>
+    /// <param name="spacing">The spacing between characters</param>
+    /// <param name="tint">The tint color</param>
+    public unsafe void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    {
+        fixed (RaylibImage* imgPtr = &raylibImage)
+        {
+            Raylib.ImageDrawTextEx(imgPtr, font, text, position, fontSize, spacing, tint);
+        }
+    }
 
     /// <summary>
     /// Create a duplicate image
