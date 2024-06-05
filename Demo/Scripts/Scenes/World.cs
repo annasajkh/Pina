@@ -1,9 +1,9 @@
 ﻿using Demo.Scripts.Entities;
-using Pina.Scripts.Abstracts;
-using Pina.Scripts.Core;
+using Pina.Abstracts;
+using Pina.Core;
 using Raylib_cs;
 using System.Numerics;
-using Timer = Pina.Scripts.Components.Timer;
+using Timer = Pina.Components.Timer;
 
 namespace Demo.Scripts.Scenes;
 

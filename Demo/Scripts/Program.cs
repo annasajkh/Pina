@@ -1,7 +1,7 @@
 ﻿using Demo.Scripts.Scenes;
-using Pina.Scripts.Core;
-using Pina.Scripts.Core.Types;
-using Pina.Scripts.Managers;
+using Pina.Core;
+using Pina.Managers;
+using Pina.Types;
 
 namespace Demo.Scripts;
 

@@ -1,5 +1,5 @@
 ﻿using Demo.Scripts.GameObjects;
-using Pina.Scripts.Interfaces;
+using Pina.Interfaces;
 using System.Numerics;
 
 namespace Demo.Scripts.Entities;

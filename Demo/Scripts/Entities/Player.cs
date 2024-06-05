@@ -1,8 +1,8 @@
-﻿using Pina.Scripts.Core;
-using Pina.Scripts.Interfaces;
+﻿using Pina.Core;
+using Pina.Interfaces;
 using Raylib_cs;
 using System.Numerics;
-using Texture2D = Pina.Scripts.Resources.Texture2D;
+using Texture2D = Pina.Resources.Texture2D;
 namespace Demo.Scripts.Entities;
 
 public class Player : Entity, IDrawable, IDisposable
