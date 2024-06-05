@@ -5,7 +5,7 @@ using Texture2D = Pina.Resources.Texture2D;
 
 namespace Pina.Core;
 
-public static unsafe class Material
+public static class Material
 {
     public static bool Ready(RaylibMaterial raylibMaterial)
     {
@@ -15,7 +15,7 @@ public static unsafe class Material
     /// <summary>
     /// Load materials from model file
     /// </summary>
-    public static RaylibMaterial* Loads(string fileName, int materialCount)
+    public static unsafe RaylibMaterial* Loads(string fileName, int materialCount)
     {
         byte[] bytes = Encoding.ASCII.GetBytes(fileName);
 
@@ -37,7 +37,7 @@ public static unsafe class Material
     /// <summary>
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
     /// </summary>
-    public static void SetTexture(RaylibMaterial* raylibMaterial, MaterialMapIndex mapType, Texture2D texture)
+    public static unsafe void SetTexture(RaylibMaterial* raylibMaterial, MaterialMapIndex mapType, Texture2D texture)
     {
         Raylib.SetMaterialTexture(raylibMaterial, mapType, texture.raylibTexture2D);
     }

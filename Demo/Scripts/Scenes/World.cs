@@ -11,7 +11,6 @@ public class World : Scene
 {
     private Color color = Color.White;
     private Player player;
-    
     private Timer shotTimer;
 
     public override void Load()

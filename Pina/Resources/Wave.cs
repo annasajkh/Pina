@@ -3,7 +3,7 @@ using RaylibWave = Raylib_cs.Wave;
 
 namespace Pina.Resources;
 
-public class Wave : Resource
+public sealed class Wave : Resource
 {
     public RaylibWave raylibWave;
 

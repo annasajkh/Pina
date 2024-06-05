@@ -4,7 +4,7 @@ using RaylibAudioStream = Raylib_cs.AudioStream;
 
 namespace Pina.Resources;
 
-public class AudioStream : Resource
+public sealed class AudioStream : Resource
 {
     RaylibAudioStream raylibAudioStream;
 

@@ -2,7 +2,7 @@
 
 namespace Pina.Resources;
 
-public class FontData : Resource
+public sealed class FontData : Resource
 {
     public unsafe GlyphInfo* chars;
 

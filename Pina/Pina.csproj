@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Box2D.NET.Release" Version="0.0.7" />
     <PackageReference Include="Raylib-cs" Version="6.0.0" />
   </ItemGroup>
 

@@ -1,12 +1,11 @@
 ﻿using Raylib_cs;
 using RaylibModel = Raylib_cs.Model;
 using RaylibModelAnimation = Raylib_cs.ModelAnimation;
-using Pina.Resources;
 
 namespace Pina.Resources;
 
 
-public class Model : Resource
+public sealed class Model : Resource
 {
     RaylibModel raylibModel;
 

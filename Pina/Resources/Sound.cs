@@ -3,7 +3,7 @@ using RaylibSound = Raylib_cs.Sound;
 
 namespace Pina.Resources;
 
-public class Sound : Resource
+public sealed class Sound : Resource
 {
     public RaylibSound raylibSound;
 

@@ -3,7 +3,6 @@ using RaylibRenderTexture2D = Raylib_cs.RenderTexture2D;
 
 namespace Pina.Resources;
 
-
 public sealed class RenderTexture2D : Resource
 {
     public RaylibRenderTexture2D raylibRenderTexture2D;

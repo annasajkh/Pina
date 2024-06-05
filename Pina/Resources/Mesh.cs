@@ -4,7 +4,7 @@ using RaylibMesh = Raylib_cs.Mesh;
 
 namespace Pina.Resources;
 
-public class Mesh : Resource
+public sealed class Mesh : Resource
 {
     public RaylibMesh raylibMesh;
 

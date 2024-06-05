@@ -6,7 +6,7 @@ using RaylibFont = Raylib_cs.Font;
 
 namespace Pina.Resources;
 
-public class Font : Resource
+public sealed class Font : Resource
 {
     public RaylibFont raylibFont;
 

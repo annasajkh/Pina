@@ -3,7 +3,7 @@ using RaylibMusic = Raylib_cs.Music;
 
 namespace Pina.Resources;
 
-public class Music : Resource
+public sealed class Music : Resource
 {
     RaylibMusic raylibMusic;
 
