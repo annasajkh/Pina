@@ -21,7 +21,7 @@ public class World : Scene
 
     public override void Init()
     {
-        player = new Player(position: new Vector2(Application.RenderWidth / 2, Application.RenderHeight /2), rotation: 0);
+        player = new Player(position: new Vector2(Application.RenderWidth / 2, Application.RenderHeight / 2), rotation: 0);
     }
 
     public override void GetInput()

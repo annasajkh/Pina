@@ -8,6 +8,8 @@ namespace Pina.Resources;
 
 public sealed class Font : Resource
 {
+    public float FontSize { get; set; } = 30;
+    public float Spacing { get; set; } = 1; 
     public RaylibFont raylibFont;
 
     /// <summary>
@@ -50,8 +52,10 @@ public sealed class Font : Resource
     /// </summary>
     public static Font LoadEx(string fileName, int fontSize, int[] codepoints, int codepointCount)
     {
+        
         Font font = new Font();
 
+        font.FontSize = fontSize;
         font.raylibFont = Raylib.LoadFontEx(fileName, fontSize, codepoints, codepointCount);
 
         return font;
@@ -76,6 +80,7 @@ public sealed class Font : Resource
     {
         Font font = new Font();
 
+        font.FontSize = fontSize;
         font.raylibFont = Raylib.LoadFontFromMemory(fileType, fileData, fontSize, codepoints, codepointCount);
 ;
         return font;
@@ -108,9 +113,9 @@ public sealed class Font : Resource
     /// <summary>
     /// Measure string size for this font
     /// </summary>
-    public Vector2 MeasureEx(string text, float fontSize, float spacing)
+    public Vector2 MeasureEx(string text)
     {
-        return Raylib.MeasureTextEx(raylibFont, text, fontSize, spacing);
+        return Raylib.MeasureTextEx(raylibFont, text, FontSize, Spacing);
     }
 
     /// <summary>

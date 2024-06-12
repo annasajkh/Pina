@@ -1,19 +1,24 @@
 ﻿using Pina.Abstracts;
 using Pina.Core;
 using Raylib_cs;
+using System.Numerics;
+using Font = Pina.Resources.Font;
 
 namespace Demo.Scripts.Scenes;
 
 internal class MainMenu : Scene
 {
+    Font font;
+    string playText = "Play";
+
     public override void Load()
     {
-
+        font = Font.Load(Path.Combine("Assets", "Fonts", "Arial.ttf"));
     }
 
     public override void Init()
     {
-
+        Console.WriteLine(font.MeasureEx(playText).X);
     }
 
     public override void GetInput()
@@ -35,7 +40,7 @@ internal class MainMenu : Scene
 
         Graphics.ClearBackground(new Color(0, 0, 0, 0));
 
-        Graphics.DrawText("Press Enter to Play", Window.Size.X / 2 - 100, Window.Size.Y / 2, 20, Color.White);
+        Graphics.DrawTextEx(font.raylibFont, playText, new Vector2(Window.Size.X / 2 - font.MeasureEx(playText).X / 2, Window.Size.Y / 2 - font.MeasureEx(playText).Y / 2), font.FontSize, font.Spacing, Color.White);
 
         Graphics.EndDrawing();
     }
