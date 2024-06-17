@@ -8,12 +8,12 @@ namespace Demo.Scripts.Scenes;
 
 internal class MainMenu : Scene
 {
+    string playText = "Press Enter To Play";
     Font font;
-    string playText = "Play";
 
     public override void Load()
     {
-        font = Font.Load(Path.Combine("Assets", "Fonts", "Arial.ttf"));
+        font = Font.Load(Path.Combine("Assets", "Fonts", "Arial.ttf"), fontSize: 25);
     }
 
     public override void Init()

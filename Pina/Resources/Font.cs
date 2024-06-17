@@ -6,10 +6,19 @@ using RaylibFont = Raylib_cs.Font;
 
 namespace Pina.Resources;
 
-public sealed class Font : Resource
+public class Font : Resource
 {
-    public float FontSize { get; set; } = 30;
+    /// <summary>
+    /// The size of the font
+    /// NOTE: Don't change this during runtime it will cause weird artifacts and blurriness
+    /// </summary>
+    public int FontSize { get; set; }
+
+    /// <summary>
+    /// The spacing of the font
+    /// </summary>
     public float Spacing { get; set; } = 1; 
+
     public RaylibFont raylibFont;
 
     /// <summary>
@@ -38,25 +47,12 @@ public sealed class Font : Resource
     /// Load font from file into GPU memory (VRAM)
     /// </summary>
     /// <param name="fileName">The file name of the font to load</param>
-    public static Font Load(string fileName)
+    public static Font Load(string fileName, int fontSize)
     {
         Font font = new Font();
 
-        font.raylibFont = Raylib.LoadFont(fileName);
-
-        return font;
-    }
-
-    /// <summary>
-    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set
-    /// </summary>
-    public static Font LoadEx(string fileName, int fontSize, int[] codepoints, int codepointCount)
-    {
-        
-        Font font = new Font();
-
-        font.FontSize = fontSize;
-        font.raylibFont = Raylib.LoadFontEx(fileName, fontSize, codepoints, codepointCount);
+        font.raylibFont = Raylib.LoadFontEx(fileName, fontSize, null, 0);
+        font.FontSize = font.raylibFont.BaseSize;
 
         return font;
     }
@@ -68,21 +64,22 @@ public sealed class Font : Resource
     {
         Font font = new Font();
 
-        font.raylibFont = Raylib.LoadFontFromImage(image.raylibImage, key, firstChar)
-;
+        font.raylibFont = Raylib.LoadFontFromImage(image.raylibImage, key, firstChar);
+        font.FontSize = font.raylibFont.BaseSize;
+
         return font;
     }
 
     /// <summary>
     /// Load font from managed memory, fileType refers to extension: i.e. "ttf"
     /// </summary>
-    public static Font LoadFromMemory(string fileType, byte[] fileData, int fontSize, int[] codepoints, int codepointCount)
+    public static Font LoadFromMemory(string fileType, byte[] fileData, int fontSize)
     {
         Font font = new Font();
 
-        font.FontSize = fontSize;
-        font.raylibFont = Raylib.LoadFontFromMemory(fileType, fileData, fontSize, codepoints, codepointCount);
-;
+        font.raylibFont = Raylib.LoadFontFromMemory(fileType, fileData, fontSize, null, 0);
+        font.FontSize = font.raylibFont.BaseSize;
+        
         return font;
     }
 
