@@ -18,7 +18,7 @@ internal class MainMenu : Scene
 
     public override void Init()
     {
-        Console.WriteLine(font.MeasureEx(playText).X);
+
     }
 
     public override void GetInput()
@@ -43,5 +43,10 @@ internal class MainMenu : Scene
         Graphics.DrawTextEx(font.raylibFont, playText, new Vector2(Window.Size.X / 2 - font.MeasureEx(playText).X / 2, Window.Size.Y / 2 - font.MeasureEx(playText).Y / 2), font.FontSize, font.Spacing, Color.White);
 
         Graphics.EndDrawing();
+    }
+
+    public override void Dispose()
+    {
+        font.Dispose();
     }
 }
