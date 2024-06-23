@@ -339,6 +339,7 @@ public static class Application
 
         if (windowConfig.Icon is Image icon)
         {
+            icon.Format(PixelFormat.UncompressedR8G8B8A8);
             Raylib.SetWindowIcon(icon.raylibImage);
         }
 
