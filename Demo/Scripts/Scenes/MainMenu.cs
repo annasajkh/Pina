@@ -13,7 +13,7 @@ internal class MainMenu : Scene
 
     public override void Load()
     {
-        font = Font.Load(Path.Combine("Assets", "Fonts", "Arial.ttf"), fontSize: 30);
+        font = Font.Load(Path.Combine("Assets", "Fonts", "Arial.ttf"), fontSize: 36);
     }
 
     public override void Init()

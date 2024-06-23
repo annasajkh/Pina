@@ -10,6 +10,7 @@ internal static class Program
     static void Main()
     {
         var windowConfig = new WindowConfig(title: "Cat Shooter", size: new Vector2i(960, 540));
+        windowConfig.Resizable = true;
         var sceneManager = new SceneManager();
 
         sceneManager.AddScene("MainMenu", new MainMenu());

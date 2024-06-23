@@ -26,8 +26,6 @@ public static class Window
         }
     }
 
-    private static Vector2i size = new Vector2i(960, 540);
-
     /// <summary>
     /// Size of the window
     /// </summary>
@@ -35,13 +33,12 @@ public static class Window
     {
         get
         {
-            return size;
+            return new Vector2i(Raylib.GetScreenWidth(), Raylib.GetScreenHeight());
         }
 
         set
         {
-            size = value;
-            Raylib.SetWindowSize(size.X, size.Y);
+            Raylib.SetWindowSize(value.X, value.Y);
         }
     }
 
