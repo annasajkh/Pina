@@ -3,29 +3,29 @@ using Pina.Abstracts;
 using Pina.Core;
 using Raylib_cs;
 using System.Numerics;
-using Music = Pina.Resources.Music;
+using Sound = Pina.Resources.Sound;
 using Timer = Pina.Components.Timer;
-
 namespace Demo.Scripts.Scenes;
 
 public class World : Scene
 {
-    private Color color = Color.White;
-    private Player player;
-    private Timer shotTimer;
-    Music music;
+    Color color = Color.White;
+    Player player;
+    Timer shotTimer;
+    Sound sound;
 
     public override void Load()
     {
         shotTimer = new Timer(0.5f, false);
         shotTimer.Start();
-        music = Music.LoadStream(Path.Combine("Assets", "Musics", "Different Heaven & Sian Area - Feel Like Horrible [NCS Release].mp3"));
+        sound = Sound.Load(Path.Combine("Assets", "Musics", "Different Heaven & Sian Area - Feel Like Horrible [NCS Release].mp3"));
     }
 
     public override void Init()
     {
         player = new Player(position: new Vector2(Application.RenderWidth / 2, Application.RenderHeight / 2), rotation: 0);
-        music.PlayStream();
+        sound.Play();
+        sound.SetVolume(0.5f);
     }
 
     public override void GetInput()
@@ -40,7 +40,6 @@ public class World : Scene
     {
         shotTimer.Step(delta);
         player.Update(delta);
-        music.UpdateStream();
     }
 
     public override void Draw()
@@ -58,5 +57,6 @@ public class World : Scene
         base.Dispose();
 
         player.Dispose();
+        sound.Dispose();
     }
 }
