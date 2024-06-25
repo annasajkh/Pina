@@ -8,9 +8,9 @@ public static class ModelAnimation
     /// <summary>
     ///  Load model animations from file
     /// </summary>
-    public static unsafe RaylibModelAnimation* Loads(string fileName, uint animCount)
+    public static unsafe RaylibModelAnimation* Loads(sbyte* fileName, int* animCount)
     {
-        return Raylib.LoadModelAnimations(fileName, ref animCount);
+        return Raylib.LoadModelAnimations(fileName, animCount);
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public static class ModelAnimation
     /// <summary>
     /// Unload animation array data
     /// </summary>
-    public static unsafe void UnloadModelAnimations(RaylibModelAnimation* animations, uint animCount)
+    public static unsafe void UnloadModelAnimations(RaylibModelAnimation* animations, int animCount)
     {
         Raylib.UnloadModelAnimations(animations, animCount);
     }

@@ -173,7 +173,7 @@ public sealed class Mesh : Resource
     /// </summary>
     protected override void Unload()
     {
-        Raylib.UnloadMesh(ref raylibMesh);
+        Raylib.UnloadMesh(raylibMesh);
 
         base.Unload();
     }

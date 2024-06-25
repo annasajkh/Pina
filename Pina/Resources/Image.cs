@@ -164,7 +164,7 @@ public sealed class Image : Resource
     /// <param name="memoryBuffer">The memory buffer it will export to</param>
     /// <param name="fileType">The file type</param>
     /// <param name="fileSize">The file size</param>
-    public unsafe void ExportToMemory(char* memoryBuffer, sbyte* fileType, int* fileSize)
+    public unsafe void ExportToMemory(byte* memoryBuffer, sbyte* fileType, int* fileSize)
     {
         if (!Ready)
         {
